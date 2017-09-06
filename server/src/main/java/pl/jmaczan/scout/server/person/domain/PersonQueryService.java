@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-class PersonCrudService {
+class PersonQueryService {
 
     @Autowired
     private PersonRepository personRepository;
@@ -15,7 +15,4 @@ class PersonCrudService {
         return personRepository.findAll();
     }
 
-    void addPerson(Person person) {
-        personRepository.save(person);
-    }
 }

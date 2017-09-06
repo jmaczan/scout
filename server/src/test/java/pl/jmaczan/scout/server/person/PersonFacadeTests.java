@@ -1,6 +1,7 @@
 package pl.jmaczan.scout.server.person;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ public class PersonFacadeTests {
     @Autowired
     private PersonFacade personFacade;
 
+    @Ignore //because test is written before the method's body
     @Test
     public void should_returnCorrectPerson_when_personHasBeenAdded() {
         //GIVEN
@@ -42,20 +44,22 @@ public class PersonFacadeTests {
         Assert.assertEquals(firstPerson.getDescription(), retrievedPersonDto.getDescription());
     }
 
+    @Ignore //because test is written before the method's body
     @Test
     public void should_returnModifiedPerson_when_personHasBeenModified() {
         //GIVEN
         PersonDto firstPerson = new PersonDto();
+        firstPerson.setId(1L);
         firstPerson.setForename("Jan");
         firstPerson.setSurname("Kowalski");
         firstPerson.setDescription("opis 1");
         personFacade.addPerson(firstPerson);
 
+        //WHEN
         firstPerson.setForename("Johny");
         firstPerson.setSurname("Kowalsky");
         firstPerson.setDescription("opis 3");
 
-        //WHEN
         personFacade.modifyPerson(firstPerson);
         PersonDto retrievedPersonDto = personFacade.getPerson(firstPerson);
 

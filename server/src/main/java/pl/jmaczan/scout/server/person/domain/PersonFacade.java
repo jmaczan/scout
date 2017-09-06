@@ -11,18 +11,22 @@ import java.util.List;
 public class PersonFacade {
 
     @Autowired
-    private PersonCrudService personCrudService;
+    private PersonCommandService personCommandService;
+
+    @Autowired
+    private PersonQueryService personQueryService;
 
     @Autowired
     private PersonMapperDecorator personMapper;
 
     public void addPerson(PersonDto personDto) {
         Person person = personMapper.personDtoToPerson(personDto);
-        this.personCrudService.addPerson(person);
+        this.personCommandService.addPerson(person);
     }
 
     public void modifyPerson(PersonDto personDto) {
-        //method stub; TODO
+        Person person = personMapper.personDtoToPerson(personDto);
+        this.personCommandService.modifyPerson(person);
     }
 
     public PersonDto getPerson(PersonDto personDto) {
@@ -30,7 +34,7 @@ public class PersonFacade {
     }
 
     public List<PersonDto> getAllPersons() {
-        return personsToPersonDtos(this.personCrudService.getAllPersons());
+        return personsToPersonDtos(this.personQueryService.getAllPersons());
     }
 
     private PersonDto personToPersonDto(Person person) {
