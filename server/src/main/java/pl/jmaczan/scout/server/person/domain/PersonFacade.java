@@ -21,8 +21,24 @@ public class PersonFacade {
         this.personCrudService.addPerson(person);
     }
 
+    public void modifyPerson(PersonDto personDto) {
+        //method stub; TODO
+    }
+
+    public PersonDto getPerson(PersonDto personDto) {
+        return null; //method stub; TODO
+    }
+
     public List<PersonDto> getAllPersons() {
         return personsToPersonDtos(this.personCrudService.getAllPersons());
+    }
+
+    private PersonDto personToPersonDto(Person person) {
+        return personMapper.personToPersonDto(person);
+    }
+
+    private Person personDtoToPerson(PersonDto personDto) {
+        return personMapper.personDtoToPerson(personDto);
     }
 
     private List<PersonDto> personsToPersonDtos(List<Person> personList) {

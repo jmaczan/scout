@@ -23,6 +23,61 @@ public class PersonFacadeTests {
     private PersonFacade personFacade;
 
     @Test
+    public void should_returnCorrectPerson_when_personHasBeenAdded() {
+        //GIVEN
+        PersonDto firstPerson = new PersonDto();
+        firstPerson.setForename("Jan");
+        firstPerson.setSurname("Kowalski");
+        firstPerson.setDescription("opis 1");
+        personFacade.addPerson(firstPerson);
+
+        //WHEN
+        PersonDto retrievedPersonDto = personFacade.getPerson(firstPerson);
+
+        //THEN
+        Assert.assertNotNull(retrievedPersonDto);
+
+        Assert.assertEquals(firstPerson.getForename(), retrievedPersonDto.getForename());
+        Assert.assertEquals(firstPerson.getSurname(), retrievedPersonDto.getSurname());
+        Assert.assertEquals(firstPerson.getDescription(), retrievedPersonDto.getDescription());
+    }
+
+    @Test
+    public void should_returnModifiedPerson_when_personHasBeenModified() {
+        //GIVEN
+        PersonDto firstPerson = new PersonDto();
+        firstPerson.setForename("Jan");
+        firstPerson.setSurname("Kowalski");
+        firstPerson.setDescription("opis 1");
+        personFacade.addPerson(firstPerson);
+
+        firstPerson.setForename("Johny");
+        firstPerson.setSurname("Kowalsky");
+        firstPerson.setDescription("opis 3");
+
+        //WHEN
+        personFacade.modifyPerson(firstPerson);
+        PersonDto retrievedPersonDto = personFacade.getPerson(firstPerson);
+
+        //THEN
+        Assert.assertNotNull(retrievedPersonDto);
+
+        Assert.assertEquals(firstPerson.getForename(), retrievedPersonDto.getForename());
+        Assert.assertEquals(firstPerson.getSurname(), retrievedPersonDto.getSurname());
+        Assert.assertEquals(firstPerson.getDescription(), retrievedPersonDto.getDescription());
+    }
+
+    @Test
+    public void should_returnEmptyList_when_noPersonsExist() {
+        //WHEN
+        List<PersonDto> retrievedPersonDtos = personFacade.getAllPersons();
+
+        //THEN
+        Assert.assertNotNull(retrievedPersonDtos);
+        Assert.assertEquals(0, retrievedPersonDtos.size());
+    }
+
+    @Test
     public void should_returnAllPersonDtos_when_personsExist() {
         //GIVEN
         PersonDto firstPerson = new PersonDto();
