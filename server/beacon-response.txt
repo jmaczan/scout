@@ -1,8 +1,0 @@
-
-main.js:11 beaconservice - collected some error [object Object]
-main.js:11 beaconservice - collected some data [object Object]
-main.js:11 data{"eventType":"didRangeBeaconsInRegion","region":{"identifier":"deskBeacon","uuid":"f7826da6-4fa2-4e98-8024-bc5b71e0893e","typeName":"BeaconRegion"},"beacons":[{"uuid":"f7826da6-4fa2-4e98-8024-bc5b71e0893e","major":"3671","minor":"36569","proximity":"ProximityImmediate","rssi":-45,"tx":-59,"accuracy":0.07}]}
-main.js:11 beaconservice - collected some error [object Object]
-main.js:11 beaconservice - collected some data [object Object]
-main.js:11 data{"eventType":"didRangeBeaconsInRegion","region":{"identifier":"deskBeacon","uuid":"f7826da6-4fa2-4e98-8024-bc5b71e0893e","typeName":"BeaconRegion"},"beacons":[{"uuid":"f7826da6-4fa2-4e98-8024-bc5b71e0893e","major":"3671","minor":"36569","proximity":"ProximityImmediate","rssi":-42,"tx":-59,"accuracy":0.07}]}
-main.js:11 beaconservice - collected some error [object Object]
