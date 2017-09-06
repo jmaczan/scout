@@ -12,6 +12,7 @@ class Person {
     private Forename forename;
     @Embedded
     private Surname surname;
+
     private String description;
 
     Person() {
@@ -24,11 +25,10 @@ class Person {
         this.description = description;
     }
 
-    Long getId() {
+    public Long getId() {
         return id;
     }
-
-    void setId(Long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -46,10 +46,10 @@ class Person {
         this.surname = surname;
     }
 
-    String getDescription() {
+    public String getDescription() {
         return description;
     }
-    void setDescription(String description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 }

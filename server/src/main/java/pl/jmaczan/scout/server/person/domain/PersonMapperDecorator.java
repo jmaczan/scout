@@ -1,9 +1,6 @@
 package pl.jmaczan.scout.server.person.domain;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import pl.jmaczan.scout.server.person.domain.dto.PersonDto;
 
@@ -11,7 +8,6 @@ import pl.jmaczan.scout.server.person.domain.dto.PersonDto;
 class PersonMapperDecorator implements PersonMapper {
 
     @Autowired
-    @Qualifier("delegate")
     private PersonMapper delegate;
 
     @Override

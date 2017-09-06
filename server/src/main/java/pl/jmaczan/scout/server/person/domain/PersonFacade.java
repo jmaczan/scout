@@ -25,15 +25,15 @@ public class PersonFacade {
         return personsToPersonDtos(this.personCrudService.getAllPersons());
     }
 
-    List<PersonDto> personsToPersonDtos(List<Person> personList) {
+    private List<PersonDto> personsToPersonDtos(List<Person> personList) {
         List<PersonDto> personDtoList = new ArrayList<>();
-        personList.stream().forEach(person -> personDtoList.add(PersonMapper.INSTANCE.personToPersonDto(person)));
+        personList.stream().forEach(person -> personDtoList.add(personMapper.personToPersonDto(person)));
         return personDtoList;
     }
 
-    List<Person> personDtosToPersonList(List<PersonDto> personDtoList) {
+    private List<Person> personDtosToPersonList(List<PersonDto> personDtoList) {
         List<Person> personList = new ArrayList<>();
-        personDtoList.stream().forEach(personDto -> personList.add(PersonMapper.INSTANCE.personDtoToPerson(personDto)));
+        personDtoList.stream().forEach(personDto -> personList.add(personMapper.personDtoToPerson(personDto)));
         return personList;
     }
 }
