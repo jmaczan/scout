@@ -1,6 +1,7 @@
 package pl.jmaczan.scout.server.person;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,52 +24,63 @@ public class PersonFacadeTests {
     @Autowired
     private PersonFacade personFacade;
 
-    @Ignore //because test is written before the method's body
     @Test
     public void should_returnCorrectPerson_when_personHasBeenAdded() {
         //GIVEN
-        PersonDto firstPerson = new PersonDto();
-        firstPerson.setForename("Jan");
-        firstPerson.setSurname("Kowalski");
-        firstPerson.setDescription("opis 1");
-        personFacade.addPerson(firstPerson);
+        PersonDto personDto = new PersonDto();
+        personDto.setForename("Jan");
+        personDto.setSurname("Kowalski");
+        personDto.setDescription("opis 1");
+        personFacade.addPerson(personDto);
+
+        List<PersonDto> persons = personFacade.getAllPersons();
+        //there's only one person, so we take a first
+        PersonDto retrievedPerson = persons.get(0);
+        //we have to assign his id if we want to modify the record
+        personDto.setId(retrievedPerson.getId());
 
         //WHEN
-        PersonDto retrievedPersonDto = personFacade.getPerson(firstPerson);
+        PersonDto retrievedPersonDto = personFacade.getPerson(personDto);
 
         //THEN
         Assert.assertNotNull(retrievedPersonDto);
 
-        Assert.assertEquals(firstPerson.getForename(), retrievedPersonDto.getForename());
-        Assert.assertEquals(firstPerson.getSurname(), retrievedPersonDto.getSurname());
-        Assert.assertEquals(firstPerson.getDescription(), retrievedPersonDto.getDescription());
+        Assert.assertEquals(personDto.getForename(), retrievedPersonDto.getForename());
+        Assert.assertEquals(personDto.getSurname(), retrievedPersonDto.getSurname());
+        Assert.assertEquals(personDto.getDescription(), retrievedPersonDto.getDescription());
     }
 
-    @Ignore //because test is written before the method's body
     @Test
     public void should_returnModifiedPerson_when_personHasBeenModified() {
         //GIVEN
-        PersonDto firstPerson = new PersonDto();
-        firstPerson.setId(1L);
-        firstPerson.setForename("Jan");
-        firstPerson.setSurname("Kowalski");
-        firstPerson.setDescription("opis 1");
-        personFacade.addPerson(firstPerson);
+        PersonDto personDto = new PersonDto();
+        personDto.setForename("Jan");
+        personDto.setSurname("Kowalski");
+        personDto.setDescription("opis 1");
+        personFacade.addPerson(personDto);
 
         //WHEN
-        firstPerson.setForename("Johny");
-        firstPerson.setSurname("Kowalsky");
-        firstPerson.setDescription("opis 3");
+        personDto.setForename("Johny");
+        personDto.setSurname("Kowalsky");
+        personDto.setDescription("opis 3");
 
-        personFacade.modifyPerson(firstPerson);
-        PersonDto retrievedPersonDto = personFacade.getPerson(firstPerson);
+        List<PersonDto> persons = personFacade.getAllPersons();
+
+        //there's only one person, so we take a first
+        PersonDto retrievedPerson = persons.get(0);
+        //we have to assign his id if we want to modify the record
+        personDto.setId(retrievedPerson.getId());
+
+        personFacade.modifyPerson(personDto);
+
+        PersonDto retrievedPersonDto = personFacade.getPerson(personDto);
 
         //THEN
         Assert.assertNotNull(retrievedPersonDto);
 
-        Assert.assertEquals(firstPerson.getForename(), retrievedPersonDto.getForename());
-        Assert.assertEquals(firstPerson.getSurname(), retrievedPersonDto.getSurname());
-        Assert.assertEquals(firstPerson.getDescription(), retrievedPersonDto.getDescription());
+        Assert.assertEquals(personDto.getForename(), retrievedPersonDto.getForename());
+        Assert.assertEquals(personDto.getSurname(), retrievedPersonDto.getSurname());
+        Assert.assertEquals(personDto.getDescription(), retrievedPersonDto.getDescription());
     }
 
     @Test

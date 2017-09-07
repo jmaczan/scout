@@ -6,7 +6,7 @@ import javax.persistence.*;
 class Person {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Embedded
     private Forename forename;

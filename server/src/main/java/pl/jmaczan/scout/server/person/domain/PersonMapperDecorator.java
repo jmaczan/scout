@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pl.jmaczan.scout.server.person.domain.dto.PersonDto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 class PersonMapperDecorator implements PersonMapper {
 
@@ -13,8 +16,8 @@ class PersonMapperDecorator implements PersonMapper {
     @Override
     public PersonDto personToPersonDto(Person person) {
         PersonDto personDto = delegate.personToPersonDto(person);
-        personDto.setForename(person.getForename().getForename());
-        personDto.setSurname(person.getSurname().getSurname());
+        personDto.setForename(person.getForename().getValue());
+        personDto.setSurname(person.getSurname().getValue());
         return personDto;
     }
 
@@ -24,5 +27,17 @@ class PersonMapperDecorator implements PersonMapper {
         person.setForename(new Forename(personDto.getForename()));
         person.setSurname(new Surname(personDto.getSurname()));
         return person;
+    }
+
+    List<PersonDto> personsToPersonDtos(List<Person> personList) {
+        List<PersonDto> personDtoList = new ArrayList<>();
+        personList.stream().forEach(person -> personDtoList.add(personToPersonDto(person)));
+        return personDtoList;
+    }
+
+    List<Person> personDtosToPersonList(List<PersonDto> personDtoList) {
+        List<Person> personList = new ArrayList<>();
+        personDtoList.stream().forEach(personDto -> personList.add(personDtoToPerson(personDto)));
+        return personList;
     }
 }

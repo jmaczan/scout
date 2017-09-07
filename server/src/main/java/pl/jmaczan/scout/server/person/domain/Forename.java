@@ -9,15 +9,15 @@ import javax.persistence.Embeddable;
 class Forename {
 
     @Column(name = "FORENAME")
-    private String forename;
+    private String value;
 
     Forename() {
 
     }
 
-    Forename(String forename) {
-        validate(forename);
-        this.forename = forename;
+    Forename(String value) {
+        validate(value);
+        this.value = value;
     }
 
     private void validate(String forename) {
@@ -26,11 +26,26 @@ class Forename {
         }
     }
 
-    String getForename() {
-        return forename;
+    String getValue() {
+        return value;
     }
 
-    void setForename(String forename) {
-        this.forename = forename;
+    void setValue(String value) {
+        this.value = value;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Forename)) return false;
+
+        Forename forename = (Forename) o;
+
+        return value != null ? value.equals(forename.value) : forename.value == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return value != null ? value.hashCode() : 0;
     }
 }

@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.jmaczan.scout.server.person.domain.dto.PersonDto;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -17,43 +16,28 @@ public class PersonFacade {
     private PersonQueryService personQueryService;
 
     @Autowired
-    private PersonMapperDecorator personMapper;
+    private PersonMapperDecorator mapper;
 
     public void addPerson(PersonDto personDto) {
-        Person person = personMapper.personDtoToPerson(personDto);
-        this.personCommandService.addPerson(person);
+        Person person = mapper.personDtoToPerson(personDto);
+        personCommandService.addPerson(person);
     }
 
     public void modifyPerson(PersonDto personDto) {
-        Person person = personMapper.personDtoToPerson(personDto);
-        this.personCommandService.modifyPerson(person);
+        Person person = mapper.personDtoToPerson(personDto);
+        personCommandService.modifyPerson(person);
     }
 
     public PersonDto getPerson(PersonDto personDto) {
-        return null; //method stub; TODO
+        Person person = mapper.personDtoToPerson(personDto);
+        return mapper.personToPersonDto(personQueryService.getPerson(person));
     }
 
     public List<PersonDto> getAllPersons() {
-        return personsToPersonDtos(this.personQueryService.getAllPersons());
+        return mapper.personsToPersonDtos(personQueryService.getAllPersons());
     }
 
-    private PersonDto personToPersonDto(Person person) {
-        return personMapper.personToPersonDto(person);
-    }
-
-    private Person personDtoToPerson(PersonDto personDto) {
-        return personMapper.personDtoToPerson(personDto);
-    }
-
-    private List<PersonDto> personsToPersonDtos(List<Person> personList) {
-        List<PersonDto> personDtoList = new ArrayList<>();
-        personList.stream().forEach(person -> personDtoList.add(personMapper.personToPersonDto(person)));
-        return personDtoList;
-    }
-
-    private List<Person> personDtosToPersonList(List<PersonDto> personDtoList) {
-        List<Person> personList = new ArrayList<>();
-        personDtoList.stream().forEach(personDto -> personList.add(personMapper.personDtoToPerson(personDto)));
-        return personList;
+    public void removeAllPersons() {
+        personCommandService.removeAllPersons();
     }
 }

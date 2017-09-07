@@ -15,4 +15,9 @@ class PersonQueryService {
         return personRepository.findAll();
     }
 
+    Person getPerson(Person person) {
+        Person result = personRepository.findOne(person.getId());
+        return result;
+    }
+
 }
