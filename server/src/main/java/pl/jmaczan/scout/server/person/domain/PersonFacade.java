@@ -33,6 +33,11 @@ public class PersonFacade {
         return mapper.personToPersonDto(personQueryService.getPerson(person));
     }
 
+    public void removePerson(PersonDto personDto) {
+        Person person = mapper.personDtoToPerson(personDto);
+        personCommandService.removePerson(person);
+    }
+
     public List<PersonDto> getAllPersons() {
         return mapper.personsToPersonDtos(personQueryService.getAllPersons());
     }

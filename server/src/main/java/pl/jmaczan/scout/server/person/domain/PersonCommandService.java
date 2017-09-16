@@ -2,7 +2,7 @@ package pl.jmaczan.scout.server.person.domain;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.jmaczan.scout.server.person.domain.exception.ValidationException;
+import pl.jmaczan.scout.server.commons.exception.DataValidationException;
 
 @Service
 class PersonCommandService {
@@ -20,6 +20,11 @@ class PersonCommandService {
         modifyPropertiesIfChanged(personFound, personWithModifications);
     }
 
+    void removePerson(Person person) {
+        validatePersonId(person);
+        personRepository.delete(person);
+    }
+
     void removeAllPersons() {
         personRepository.deleteAll();
     }
@@ -27,7 +32,7 @@ class PersonCommandService {
     private Person modifyPropertiesIfChanged(Person original, Person modified) {
         Person resultPerson = original;
         if(original.getId() != modified.getId()) {
-            throw new ValidationException("You can't modify person's id");
+            throw new DataValidationException("You can't modify person's id");
         }
 
         resultPerson.setId(original.getId());
@@ -55,7 +60,7 @@ class PersonCommandService {
     private void validatePersonId(Person person) {
         Person personFound = personRepository.findOne(person.getId());
         if(personFound == null) {
-            throw new ValidationException("Invalid person id. Doesn't exist in database");
+            throw new DataValidationException("Invalid person id. Doesn't exist in database");
         }
     }
 

@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.jmaczan.scout.server.person.domain.PersonFacade;
 
 @Transactional
-public class DevelopmentDataLoader implements ApplicationRunner {
+class DevelopmentDataLoader implements ApplicationRunner {
 
     @Autowired
     private PersonFacade personFacade;

@@ -1,6 +1,6 @@
 package pl.jmaczan.scout.server.person.domain;
 
-import pl.jmaczan.scout.server.person.domain.exception.ValidationException;
+import pl.jmaczan.scout.server.commons.exception.DataValidationException;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -21,7 +21,7 @@ class Surname {
 
     private void validate(String surname) {
         if(surname == null || surname.length() == 0) {
-            throw new ValidationException("Invalid surname");
+            throw new DataValidationException("Invalid surname");
         }
     }
 

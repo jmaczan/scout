@@ -1,4 +1,4 @@
-package pl.jmaczan.scout.server.person.domain;
+package pl.jmaczan.scout.server.team.domain;
 
 import pl.jmaczan.scout.server.commons.exception.DataValidationException;
 
@@ -6,46 +6,52 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
-class Forename {
+class TeamName {
 
-    @Column(name = "FORENAME")
+    @Column(name = "TEAM_NAME")
     private String value;
 
-    Forename() {
-
+    public TeamName() {
     }
 
-    Forename(String value) {
+    public TeamName(String value) {
         validate(value);
         this.value = value;
     }
 
     private void validate(String forename) {
         if(forename == null || forename.length() == 0) {
-            throw new DataValidationException("Invalid forename");
+            throw new DataValidationException("Invalid team name");
         }
     }
 
-    String getValue() {
+    public String getValue() {
         return value;
     }
 
-    void setValue(String value) {
+    public void setValue(String value) {
         this.value = value;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Forename)) return false;
+        if (!(o instanceof TeamName)) return false;
 
-        Forename forename = (Forename) o;
+        TeamName teamName = (TeamName) o;
 
-        return value != null ? value.equals(forename.value) : forename.value == null;
+        return value != null ? value.equals(teamName.value) : teamName.value == null;
     }
 
     @Override
     public int hashCode() {
         return value != null ? value.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "TeamName{" +
+                "value='" + value + '\'' +
+                '}';
     }
 }
