@@ -28,6 +28,8 @@ class Member {
 
     private boolean hasCross;
 
+    private Long cordId = -1L;
 
+    
 
 }
