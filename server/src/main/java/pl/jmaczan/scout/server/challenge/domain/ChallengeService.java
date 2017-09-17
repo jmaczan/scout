@@ -3,6 +3,8 @@ package pl.jmaczan.scout.server.challenge.domain;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 class ChallengeService {
 
@@ -14,7 +16,11 @@ class ChallengeService {
     }
 
     Challenge get(Long id) {
-        this.challengeRepository.findOne(id);
+        return this.challengeRepository.findOne(id);
+    }
+
+    List<Challenge> getAll() {
+        return this.challengeRepository.findAll();
     }
 
     void removeChallenge(Long id) {

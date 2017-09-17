@@ -3,7 +3,8 @@ package pl.jmaczan.scout.server.challenge.domain;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.jmaczan.scout.server.challenge.domain.dto.ChallengeDto;
-import pl.jmaczan.scout.server.challenge.domain.exception.ChallengeException;
+
+import java.util.List;
 
 @Service
 public class ChallengeFacade {
@@ -11,12 +12,17 @@ public class ChallengeFacade {
     @Autowired
     private ChallengeService challengeService;
 
+    @Autowired
+    private ChallengeMapperDecorator mapper;
+
     public void addChallenge(ChallengeDto challengeDto) {
-        if(challengeDto.getId() == null || this.challengeService.get(challengeDto.getId()) == null) {
-            this.challengeService.createChallenge();
-        } else {
-            throw new ChallengeException("Incorrect challenge id");
-        }
+        Challenge challenge = mapper.challengeDtoToChallenge(challengeDto);
+        this.challengeService.createChallenge(challenge);
+    }
+
+    public List<ChallengeDto> getAllChallenges() {
+        List<ChallengeDto> allChallenges = mapper.challengesToChallengeDtos(this.challengeService.getAll());
+        return allChallenges;
     }
 
     public void removeChallenge(ChallengeDto challengeDto) {
