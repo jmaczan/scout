@@ -13,23 +13,11 @@ import pl.jmaczan.scout.server.person.domain.dto.PersonDto;
 
 import java.util.List;
 
-@RestController("/person")
+@RestController("/person/query")
 class PersonQueryEndpoint {
 
     @Autowired
     private PersonFacade personFacade;
-
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<?> addPerson(@RequestBody PersonDto personDto) {
-        personFacade.addPerson(personDto);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<?> modifyPerson(@RequestBody PersonDto personDto) {
-        personFacade.modifyPerson(personDto);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<?> getPerson(@RequestBody PersonDto personDto) {

@@ -13,7 +13,7 @@ public class CordFacade {
     private CordService cordService;
 
     @Autowired
-    private CordMapper mapper;
+    private CordMapperDecorator mapper;
 
     public void addCord(CordDto cordDto) {
         Cord cord = mapper.cordDtoToCord(cordDto);

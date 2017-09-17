@@ -1,6 +1,7 @@
 package pl.jmaczan.scout.server.team.domain;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -29,8 +30,7 @@ class TeamMember {
 
     private boolean hasCross;
 
-    @OneToMany
-    private List<Long> challenges;
+    private ArrayList<Long> challenges;
 
     public Long getId() {
         return id;
@@ -92,7 +92,7 @@ class TeamMember {
         return challenges;
     }
 
-    public void setChallenges(List<Long> challenges) {
+    public void setChallenges(ArrayList<Long> challenges) {
         this.challenges = challenges;
     }
 }

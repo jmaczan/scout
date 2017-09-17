@@ -12,8 +12,4 @@ public class TeamFacade {
     @Autowired
     private TeamQueryService teamQueryService;
 
-    public void addTeam(TeamDto teamDto) {
-
-    }
-
 }
