@@ -2,7 +2,6 @@ package pl.jmaczan.scout.server.team.domain;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -94,5 +93,33 @@ class TeamMember {
 
     public void setChallenges(ArrayList<Long> challenges) {
         this.challenges = challenges;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof TeamMember)) return false;
+
+        TeamMember that = (TeamMember) o;
+
+        if (hasScarf != that.hasScarf) return false;
+        if (hasAnchorOnScarf != that.hasAnchorOnScarf) return false;
+        if (hasCross != that.hasCross) return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (personId != null ? !personId.equals(that.personId) : that.personId != null) return false;
+        if (rankId != null ? !rankId.equals(that.rankId) : that.rankId != null) return false;
+        return cordId != null ? cordId.equals(that.cordId) : that.cordId == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (personId != null ? personId.hashCode() : 0);
+        result = 31 * result + (rankId != null ? rankId.hashCode() : 0);
+        result = 31 * result + (cordId != null ? cordId.hashCode() : 0);
+        result = 31 * result + (hasScarf ? 1 : 0);
+        result = 31 * result + (hasAnchorOnScarf ? 1 : 0);
+        result = 31 * result + (hasCross ? 1 : 0);
+        return result;
     }
 }

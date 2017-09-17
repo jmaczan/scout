@@ -5,6 +5,14 @@ public class TeamMemberWithFunctionDto {
     private TeamMemberDto teamMemberDto;
     private FunctionDto functionDto;
 
+    public TeamMemberWithFunctionDto() {
+    }
+
+    public TeamMemberWithFunctionDto(TeamMemberDto teamMemberDto, FunctionDto functionDto) {
+        this.teamMemberDto = teamMemberDto;
+        this.functionDto = functionDto;
+    }
+
     public TeamMemberDto getTeamMemberDto() {
         return teamMemberDto;
     }

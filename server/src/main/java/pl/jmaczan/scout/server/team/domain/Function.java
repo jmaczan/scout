@@ -29,4 +29,22 @@ class Function {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Function)) return false;
+
+        Function function = (Function) o;
+
+        if (id != null ? !id.equals(function.id) : function.id != null) return false;
+        return name != null ? name.equals(function.name) : function.name == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        return result;
+    }
 }

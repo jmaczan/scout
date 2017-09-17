@@ -2,7 +2,6 @@ package pl.jmaczan.scout.server.team.domain;
 
 import javax.persistence.*;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Entity
@@ -16,7 +15,7 @@ class Team {
     private TeamName name;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    private Map<TeamMember, Function> teamMembers = new HashMap<>();
+    private Map<TeamMember, Function> members = new HashMap<>();
 
     public Long getId() {
         return id;
@@ -34,11 +33,11 @@ class Team {
         this.name = name;
     }
 
-    public Map<TeamMember, Function> getTeamMembers() {
-        return teamMembers;
+    public Map<TeamMember, Function> getMembers() {
+        return members;
     }
 
-    public void setTeamMembers(Map<TeamMember, Function> teamMembers) {
-        this.teamMembers = teamMembers;
+    public void setMembers(Map<TeamMember, Function> members) {
+        this.members = members;
     }
 }
