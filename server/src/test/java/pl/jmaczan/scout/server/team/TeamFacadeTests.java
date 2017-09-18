@@ -8,10 +8,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
+import pl.jmaczan.scout.server.commons.exception.DataValidationException;
 import pl.jmaczan.scout.server.team.domain.TeamFacade;
-import pl.jmaczan.scout.server.team.domain.dto.TeamDto;
-import pl.jmaczan.scout.server.team.domain.dto.TeamMemberDto;
-import pl.jmaczan.scout.server.team.domain.dto.TeamMemberWithFunctionDto;
+import pl.jmaczan.scout.server.team.domain.dto.*;
 
 import java.util.List;
 
@@ -25,6 +24,75 @@ public class TeamFacadeTests {
     private TeamFacade teamFacade;
 
     //TODO test z ustawianiem ID przy tworzeniu memberów
+
+    @Test
+    public void should_addTeamMemberAndSaveHisFunction_when_hisTeamExistsAndDataIsCorrect() {
+        //GIVEN
+        TeamDto teamDto = new TeamDto();
+        teamDto.setName("50 DSH Twierdza");
+        teamFacade.addTeam(teamDto);
+
+        Long teamDtoId = teamFacade.getAllTeams().get(0).getId();
+
+        FunctionDto functionDto = new FunctionDto();
+        functionDto.setName("Przyboczny");
+
+        TeamMemberDto teamMemberDto = new TeamMemberDto();
+        teamMemberDto.setPersonId(1L);
+        teamMemberDto.setHasAnchorOnScarf(false);
+
+        AddTeamMemberWithFunctionDto dto = new AddTeamMemberWithFunctionDto(teamMemberDto, functionDto, teamDtoId);
+
+        //WHEN
+        teamFacade.addMember(dto);
+
+        List<TeamDto> teamsUpdated = teamFacade.getAllTeams();
+
+        List<TeamMemberDto> teamMembersUpdated = teamFacade.getAllMembers();
+
+        //THEN
+        Assert.assertEquals(1, teamsUpdated.size());
+        Assert.assertEquals(1, teamMembersUpdated.size());
+        Assert.assertEquals(1, teamsUpdated.get(0).getMembers().size());
+        Assert.assertEquals(functionDto.getName(),
+                teamsUpdated.get(0).getMembers().get(0).getFunctionDto().getName());
+        Assert.assertEquals(teamMemberDto.getPersonId(),
+                teamsUpdated.get(0).getMembers().get(0).getTeamMemberDto().getPersonId());
+        Assert.assertEquals(teamMemberDto.isHasAnchorOnScarf(),
+                teamsUpdated.get(0).getMembers().get(0).getTeamMemberDto().isHasAnchorOnScarf());
+    }
+
+    @Test(expected = DataValidationException.class)
+    public void should_notAddTeamMemberNorSaveHisFunction_when_hisTeamDoesntExists() {
+        //GIVEN
+        TeamDto teamDto = new TeamDto();
+        teamDto.setName("50 DSH Twierdza");
+        teamFacade.addTeam(teamDto);
+
+        Long teamDtoId = teamFacade.getAllTeams().get(0).getId();
+
+        FunctionDto functionDto = new FunctionDto();
+        functionDto.setName("Przyboczny");
+
+        TeamMemberDto teamMemberDto = new TeamMemberDto();
+        teamMemberDto.setPersonId(1L);
+        teamMemberDto.setHasAnchorOnScarf(false);
+
+        AddTeamMemberWithFunctionDto dto = new AddTeamMemberWithFunctionDto(teamMemberDto, functionDto, teamDtoId+999L);
+
+        //WHEN
+        teamFacade.addMember(dto);
+
+        //THEN
+        /*
+        Throws DataValidationException.
+         */
+    }
+
+    @Test
+    public void should_notAddTeamMemberNorSaveHisFunction_when_hisTeamExistsButDataIsIncorrect() {
+
+    }
 
     @Test
     public void should_returnSameTeamId_when_getAllTeamsInvokedMultipleTimesAndNewTeamsAdded() {

@@ -2,8 +2,8 @@ package pl.jmaczan.scout.server.team.domain.dto;
 
 public class TeamMemberWithFunctionDto {
 
-    private TeamMemberDto teamMemberDto;
-    private FunctionDto functionDto;
+    protected TeamMemberDto teamMemberDto;
+    protected FunctionDto functionDto;
 
     public TeamMemberWithFunctionDto() {
     }

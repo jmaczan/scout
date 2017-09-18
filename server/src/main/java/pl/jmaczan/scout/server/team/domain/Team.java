@@ -33,6 +33,10 @@ class Team {
         this.name = name;
     }
 
+    public void addMember(TeamMember teamMember, Function function) {
+        this.members.put(teamMember, function);
+    }
+
     public Map<TeamMember, Function> getMembers() {
         return members;
     }

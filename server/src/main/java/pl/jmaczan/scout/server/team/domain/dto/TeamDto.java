@@ -1,12 +1,13 @@
 package pl.jmaczan.scout.server.team.domain.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TeamDto {
 
     private Long id;
     private String name;
-    private List<TeamMemberWithFunctionDto> members;
+    private List<TeamMemberWithFunctionDto> members = new ArrayList<>();
 
     public Long getId() {
         return id;

@@ -35,6 +35,7 @@ class TeamMapperDecorator implements TeamMapper {
             teamMemberWithFunctionDto.setFunctionDto(functionDelegate.functionToFunctionDto(function));
             members.add(teamMemberWithFunctionDto);
         });
+        teamDto.setMembers(members);
         return teamDto;
     }
 
