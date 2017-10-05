@@ -4,6 +4,8 @@ import { Platform, Nav, Config } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { MainMenuPage } from '../pages/main-menu/main-menu';
+
 import { Settings } from '../providers/settings';
 
 import { TranslateService } from '@ngx-translate/core'
@@ -29,7 +31,7 @@ import { TranslateService } from '@ngx-translate/core'
 })
 export class MyApp {
   //TODO:
-  //rootPage = FirstRunPage;
+  rootPage = MainMenuPage;
 
   @ViewChild(Nav) nav: Nav;
 

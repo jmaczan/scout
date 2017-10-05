@@ -5,6 +5,11 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { Storage, IonicStorageModule } from '@ionic/storage';
 
 import { MyApp } from './app.component';
+import { MainMenuPage } from '../pages/main-menu/main-menu';
+import { MemberPage } from '../pages/member/member';
+import { MemberListPage } from '../pages/member-list/member-list';
+import { TeamPage } from '../pages/team/team';
+import { TeamsListPage } from '../pages/teams-list/teams-list';
 
 import { Api } from '../providers/api';
 import { Items } from '../mocks/providers/items';
@@ -41,7 +46,12 @@ export function provideSettings(storage: Storage) {
 
 @NgModule({
   declarations: [
-    MyApp
+    MyApp,
+    MainMenuPage,
+    MemberPage,
+    MemberListPage,
+    TeamPage,
+    TeamsListPage
     //TODO: pages here 
   ],
   imports: [
@@ -59,7 +69,12 @@ export function provideSettings(storage: Storage) {
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp
+    MyApp,
+    MainMenuPage,
+    MemberPage,
+    MemberListPage,
+    TeamPage,
+    TeamsListPage
     //TODO: pages here 
   ],
   providers: [
