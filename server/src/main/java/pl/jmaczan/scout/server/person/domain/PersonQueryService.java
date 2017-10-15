@@ -20,4 +20,8 @@ class PersonQueryService {
         return result;
     }
 
+    Person getPerson(Long id) {
+        return personRepository.findOne(id);
+    }
+
 }

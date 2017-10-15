@@ -22,6 +22,10 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TeamService } from '../providers/team-service';
+import { TeamRestService } from '../providers/team-rest-service';
+import { MemberRestService } from '../providers/member-rest-service';
+import { MemberService } from '../providers/member-service';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -52,7 +56,7 @@ export function provideSettings(storage: Storage) {
     MemberListPage,
     TeamPage,
     TeamsListPage
-    //TODO: pages here 
+    //TODO: pages here
   ],
   imports: [
     BrowserModule,
@@ -75,7 +79,7 @@ export function provideSettings(storage: Storage) {
     MemberListPage,
     TeamPage,
     TeamsListPage
-    //TODO: pages here 
+    //TODO: pages here
   ],
   providers: [
     Api,
@@ -86,7 +90,11 @@ export function provideSettings(storage: Storage) {
     StatusBar,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    TeamService,
+    TeamRestService,
+    MemberService,
+    MemberRestService,
   ]
 })
 export class AppModule { }

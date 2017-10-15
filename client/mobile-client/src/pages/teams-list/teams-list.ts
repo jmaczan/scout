@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Team} from "../../models/team";
+import {SplashScreen} from "@ionic-native/splash-screen";
+import {TeamService} from "../../providers/team-service";
 
 /**
  * Generated class for the TeamsListPage page.
@@ -14,11 +17,66 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class TeamsListPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  private teams: Team[];
+  private justStarted: boolean = true;
+  private splashScreen: SplashScreen;
+  private teamsLoaded: boolean = false;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private teamService: TeamService) {
+    console.log('TeamsListPage: constructor invoked');
+    this.splashScreen = navParams.get("splashScreen");
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TeamsListPage');
+  }
+
+  ionViewDidEnter() {
+    if (this.justStarted) {
+      this.justStarted = false;
+      this.fetchTeamsList().then(
+        res => {
+        },
+        err => {
+          console.log("Failed to fetch teams.");
+        }
+      ).then(
+        res => {
+          this.splashScreen.hide();
+        }, err => {
+          this.splashScreen.hide();
+        }
+      );
+    }
+  }
+
+  fetchTeamsList() {
+    return new Promise((resolve, reject) => {
+       this.teamService.getAllTeams().subscribe(
+        res => {
+          this.teams = res;
+          this.teamsLoaded = true;
+        }, err => {
+          this.teams = [];
+          this.teamsLoaded = true;
+        }
+      );
+    })
+  }
+
+  private doRefresh(refresher) {
+    console.log('TeamsListPage: teams list refresh requested', refresher);
+    this.fetchTeamsList().then(
+      res => {
+      console.log("refreshed");
+    },
+      err => {
+      console.log("not refreshed");
+      });
+  }
+
+  nothing() {
+
   }
 
 }

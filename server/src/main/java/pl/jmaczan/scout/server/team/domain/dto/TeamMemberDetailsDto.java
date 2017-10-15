@@ -1,8 +1,6 @@
 package pl.jmaczan.scout.server.team.domain.dto;
 
-import java.util.Date;
-
-public class TeamMemberDto {
+public class TeamMemberDetailsDto {
 
     private Long id;
 
@@ -11,6 +9,12 @@ public class TeamMemberDto {
     private Long rankId;
 
     private Long cordId;
+
+    private String forename;
+
+    private String surname;
+
+    private String description;
 
     /**
      * Does the member has a scarf.
@@ -80,16 +84,27 @@ public class TeamMemberDto {
         this.hasCross = hasCross;
     }
 
-    @Override
-    public String toString() {
-        return "TeamMemberDto{" +
-                "id=" + id +
-                ", personId=" + personId +
-                ", rankId=" + rankId +
-                ", cordId=" + cordId +
-                ", hasScarf=" + hasScarf +
-                ", hasAnchorOnScarf=" + hasAnchorOnScarf +
-                ", hasCross=" + hasCross +
-                '}';
+    public String getForename() {
+        return forename;
+    }
+
+    public void setForename(String forename) {
+        this.forename = forename;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

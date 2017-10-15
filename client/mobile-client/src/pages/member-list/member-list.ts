@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Team} from "../../models/team";
+import {TeamMemberWithFunction} from "../../models/team-member-function";
 
 /**
  * Generated class for the MemberListPage page.
@@ -13,6 +15,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'member-list.html',
 })
 export class MemberListPage {
+
+  members: TeamMemberWithFunction[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }

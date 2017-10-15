@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {TeamMemberWithFunction} from "../../models/team-member-function";
 
 /**
  * Generated class for the MemberPage page.
@@ -13,6 +14,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'member.html',
 })
 export class MemberPage {
+
+  @Input()
+  member: TeamMemberWithFunction;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }

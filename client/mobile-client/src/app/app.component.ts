@@ -5,33 +5,20 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { MainMenuPage } from '../pages/main-menu/main-menu';
+import { TeamsListPage } from '../pages/teams-list/teams-list';
 
 import { Settings } from '../providers/settings';
 
 import { TranslateService } from '@ngx-translate/core'
 
+
+
 @Component({
-  template: `<ion-menu [content]="content">
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Pages</ion-title>
-      </ion-toolbar>
-    </ion-header>
-
-    <ion-content>
-      <ion-list>
-        <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-          {{p.title}}
-        </button>
-      </ion-list>
-    </ion-content>
-
-  </ion-menu>
-  <ion-nav #content [root]="rootPage"></ion-nav>`
+  templateUrl: 'app.component.html'
 })
 export class MyApp {
-  //TODO:
-  rootPage = MainMenuPage;
+  private appLoaded = false;
+  private rootPage = TeamsListPage; //TODO
 
   @ViewChild(Nav) nav: Nav;
 
@@ -40,17 +27,23 @@ export class MyApp {
     //{ title: 'Tutorial', component: TutorialPage },
   ]
 
-  constructor(private translate: TranslateService, private platform: Platform, settings: Settings, private config: Config, private statusBar: StatusBar, private splashScreen: SplashScreen) {
-    this.initTranslate();
-  }
+  constructor(private translate: TranslateService,
+              private platform: Platform,
+              private settings: Settings,
+              private config: Config,
+              private statusBar: StatusBar,
+              private splashScreen: SplashScreen) {
 
-  ionViewDidLoad() {
-    this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
-    });
+    this.initTranslate();
+    this.splashScreen.show();
+
+    platform.ready().then(() => {
+      statusBar.styleDefault();
+    }).then(
+      () => {
+        this.appLoaded = true;
+      }
+    )
   }
 
   initTranslate() {

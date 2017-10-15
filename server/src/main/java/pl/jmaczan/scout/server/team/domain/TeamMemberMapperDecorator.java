@@ -12,7 +12,8 @@ class TeamMemberMapperDecorator implements TeamMemberMapper {
 
     @Override
     public TeamMemberDto teamMemberToTeamMemberDto(TeamMember teamMember) {
-        return this.delegate.teamMemberToTeamMemberDto(teamMember);
+        TeamMemberDto teamMemberDto = this.delegate.teamMemberToTeamMemberDto(teamMember);
+        return teamMemberDto;
     }
 
     @Override

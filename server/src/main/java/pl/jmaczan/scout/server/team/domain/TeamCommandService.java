@@ -45,4 +45,7 @@ class TeamCommandService {
         this.teamRepository.delete(id);
     }
 
+    void removeAllTeams() {
+        this.teamRepository.deleteAll();
+    }
 }

@@ -28,4 +28,8 @@ class TeamMemberService {
     void removeTeamMember(TeamMember teamMember) {
         teamMemberRepository.delete(teamMember);
     }
+
+    void removeAllMembers() {
+        teamMemberRepository.deleteAll();
+    }
 }

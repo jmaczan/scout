@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Team} from "../../models/team";
+import {TeamMemberDetails} from "../../models/team-member-details";
+import {TeamMemberWithFunction} from "../../models/team-member-function";
 
 /**
  * Generated class for the TeamPage page.
@@ -14,11 +17,29 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class TeamPage {
 
+  @Input()
+  team: Team;
+  members: TeamMemberWithFunction[];
+  teamMemberDetailsLoaded = false;
+  isMembersListToggled = false;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TeamPage');
+  }
+
+  toggleMembers() {
+    this.isMembersListToggled = !this.isMembersListToggled;
+  }
+
+  teamMemberDetailsLoad() {
+
+  }
+
+  showMembersInTheTeam() {
+
   }
 
 }

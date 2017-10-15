@@ -5,14 +5,35 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>TeamsList</ion-title>
+    <ion-title>Teams</ion-title>
   </ion-navbar>
-
 </ion-header>
-
-
 <ion-content padding>
-
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingText="Swipe down to refresh the teams"
+      refreshingText="Refreshing teams ...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <div *ngIf="teamsLoaded; else teamsLoadFailed">
+    <ion-list>
+      <page-team *ngFor="let team of teams" [team]="team"></page-team>
+    </ion-list>
+  </div>
+  <ng-template #teamsLoadFailed>
+    <div class="flb">
+      <div class="Aligner-item Aligner-item--top"></div>
+      <label>Sorry, we couldn't get the teams list ...</label>
+      <label>Swipe down to refresh!</label>
+      <div class="Aligner-item Aligner-item--bottom"></div>
+    </div>
+  </ng-template>
 </ion-content>
+<ion-footer *ngIf="teamsLoaded">
+  <ion-fab right bottom >
+    <button ion-fab (click)="nothing()"><ion-icon name="navigate"></ion-icon></button>
+  </ion-fab>
+</ion-footer>
+
+
