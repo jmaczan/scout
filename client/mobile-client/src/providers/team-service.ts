@@ -13,6 +13,26 @@ export class TeamService {
 
   }
 
+  getAllTeamsAndMembers() : Observable<Team[]> {
+    return this.teamRestService.getAllTeamsAndMembers().map(
+      response => {
+        let responseObjects: Object[] = <Object[]> response.json();
+        let teams: Team[] = [];
+
+        responseObjects.forEach(object => {
+          teams.push(Object.assign(new Team(), object));
+        });
+
+        return teams;
+      },
+      error => {
+        console.error("Failed to load teams.");
+        return [];
+      }
+    );
+  }
+
+
   getAllTeams() : Observable<Team[]> {
     return this.teamRestService.getAllTeams().map(
       response => {

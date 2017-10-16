@@ -34,7 +34,7 @@ export class TeamsListPage {
   ionViewDidEnter() {
     if (this.justStarted) {
       this.justStarted = false;
-      this.fetchTeamsList().then(
+      this.fetchTeamsAndMembersList().then(
         res => {
         },
         err => {
@@ -48,6 +48,20 @@ export class TeamsListPage {
         }
       );
     }
+  }
+
+  fetchTeamsAndMembersList() {
+    return new Promise((resolve, reject) => {
+      this.teamService.getAllTeamsAndMembers().subscribe(
+        res => {
+          this.teams = res;
+          this.teamsLoaded = true;
+        }, err => {
+          this.teams = [];
+          this.teamsLoaded = true;
+        }
+      );
+    })
   }
 
   fetchTeamsList() {

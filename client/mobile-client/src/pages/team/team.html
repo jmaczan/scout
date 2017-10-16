@@ -2,9 +2,9 @@
 <button ion-item (click)="toggleMembers()">
   {{team.name}}
 </button>
-<div *ngIf="isMembersListToggled && teamMemberDetailsLoaded" >
-  <button class="member" ion-item *ngFor="let member of this.members">
-
+<div *ngIf="isMembersListToggled" >
+  <button class="member" ion-item *ngFor="let member of this.team.members" (click)="showMemberDetails(member)">
+    {{ member.forename }} {{ member.surname }}
   </button>
 </div>
 <ng-template #detailsNotLoaded>

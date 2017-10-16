@@ -26,6 +26,7 @@ import { TeamService } from '../providers/team-service';
 import { TeamRestService } from '../providers/team-rest-service';
 import { MemberRestService } from '../providers/member-rest-service';
 import { MemberService } from '../providers/member-service';
+import {MemberDetailsPage} from "../pages/member-details/member-details";
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -53,6 +54,7 @@ export function provideSettings(storage: Storage) {
     MyApp,
     MainMenuPage,
     MemberPage,
+    MemberDetailsPage,
     MemberListPage,
     TeamPage,
     TeamsListPage
@@ -76,6 +78,7 @@ export function provideSettings(storage: Storage) {
     MyApp,
     MainMenuPage,
     MemberPage,
+    MemberDetailsPage,
     MemberListPage,
     TeamPage,
     TeamsListPage

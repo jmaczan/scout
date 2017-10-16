@@ -1,18 +1,16 @@
 package pl.jmaczan.scout.server.team.domain.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @JsonSerialize
-public class TeamDto {
+public class TeamWithMembersDto {
 
     private Long id;
     private String name;
-    @JsonIgnore
-    private List<TeamMemberWithFunctionDto> members = new ArrayList<>();
+    private List<MemberDto> members = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -30,11 +28,11 @@ public class TeamDto {
         this.name = name;
     }
 
-    public List<TeamMemberWithFunctionDto> getMembers() {
+    public List<MemberDto> getMembers() {
         return members;
     }
 
-    public void setMembers(List<TeamMemberWithFunctionDto> members) {
+    public void setMembers(List<MemberDto> members) {
         this.members = members;
     }
 }

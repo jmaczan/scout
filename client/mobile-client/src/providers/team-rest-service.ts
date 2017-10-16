@@ -13,6 +13,7 @@ export class TeamRestService {
 
   private teamServerURL: string  = "http://localhost:8080/team";
   private getAllTeamsSuffix: string = "/all";
+  private getAllTeamsAndMembersSuffix: string = "/all/member/all";
 
   constructor(public http: Http) {
     console.log('Hello TeamRestService Provider');
@@ -20,6 +21,11 @@ export class TeamRestService {
 
   getAllTeams() {
     const url = this.teamServerURL + this.getAllTeamsSuffix;
+    return this.http.get(url);
+  }
+
+  getAllTeamsAndMembers() {
+    const url = this.teamServerURL + this.getAllTeamsAndMembersSuffix;
     return this.http.get(url);
   }
 

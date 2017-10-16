@@ -5,8 +5,7 @@ export class Member {
   personId: number;
   rankId: number;
   cordId: number;
-  functionId: number;
-  functionName: string;
+  function: string;
   forename: string;
   surname: string;
   description: string;

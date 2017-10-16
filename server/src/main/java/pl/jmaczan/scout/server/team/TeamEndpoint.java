@@ -4,12 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.jmaczan.scout.server.team.domain.TeamFacade;
 import pl.jmaczan.scout.server.team.domain.dto.TeamDto;
+import pl.jmaczan.scout.server.team.domain.dto.TeamWithMembersDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +24,17 @@ class TeamEndpoint {
     ResponseEntity<?> getAllTeams() {
         List<TeamDto> teamDtos = teamFacade.getAllTeams();
         return new ResponseEntity<>(teamDtos, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/all/member/all", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<?> getAllTeamsWithMembers() {
+        List<TeamWithMembersDto> teamDtos = teamFacade.getAllTeamsWithMembers();
+        return new ResponseEntity<>(teamDtos, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/{teamId}/member/{memberId}")
+    ResponseEntity<?> getTeamMemberDetails(@PathVariable("teamId") Long teamId, @PathVariable("memberId") Long memberId) {
+        return new ResponseEntity<>(teamFacade.getTeamMemberDetails(teamId, memberId), HttpStatus.OK);
     }
 
 }

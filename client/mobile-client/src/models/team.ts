@@ -1,11 +1,10 @@
-
-import {TeamMemberWithFunction} from "./team-member-function";
+import {Member} from "./member";
 
 export class Team {
 
   id: number;
   name: string;
-  members: TeamMemberWithFunction[];
+  members: Member[];
 
   constructor() {
   }
