@@ -7,16 +7,62 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>MemberDetails</ion-title>
+    <ion-title>Member Details</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  {{ member.forename }}
-  {{ member.surname }}
-  {{ member.memberId }}
-  {{ member.personId }}
-  {{ member.teamId }}
+  <ion-list>
+    Personal data:
+    <button class="member" ion-item>{{ member.forename }} {{ member.surname }}</button>
+    <button class="member" ion-item (click)="showModifyMemberDetails(member)">{{member.description}}</button>
+    Function:
+    <button *ngIf="member.function !== null; else noInfo">{{member.function}}</button>
+    Scarf:
+    <button class="member" ion-item *ngIf="member.hasScarf; then present else notPresent"></button>
+    Anchor on scarf:
+    <button class="member" ion-item *ngIf="member.hasAnchorOnScarf; then present else notPresent"></button>
+    Cross:
+    <button class="member" ion-item *ngIf="member.hasCross; then present else notPresent"></button>
+    Technical data:
+    <div *ngIf="member.memberId !== null">
+      <div class="member" ion-item>memberId
+        <button class="member" ion-item>{{ member.memberId }}</button>
+      </div>
+    </div>
+    <div *ngIf="member.personId !== null">
+      <div class="member" ion-item>personId
+        <button class="member" ion-item>{{ member.personId }}</button>
+      </div>
+    </div>
+    <div *ngIf="member.teamId !== null">
+      <div class="member" ion-item>teamId
+        <button class="member" ion-item>{{ member.teamId }}</button>
+      </div>
+    </div>
+    <div *ngIf="member.rankId !== null">
+      <div class="member" ion-item>rankId
+        <button class="member" ion-item>{{ member.rankId }}</button>
+      </div>
+    </div>
+    <div *ngIf="member.cordId !== null">
+      <div class="member" ion-item>cordId
+        <button class="member" ion-item>{{ member.cordId }}</button>
+      </div>
+    </div>
+  </ion-list>
+  <ng-template #present>
+    <button class="member" ion-item>Present</button>
+  </ng-template>
+
+  <ng-template #notPresent>
+    <button class="member" ion-item>Not present</button>
+  </ng-template>
+
+  <ng-template #noInfo>
+    <button class="member" ion-item>No information</button>
+  </ng-template>
+
 </ion-content>
