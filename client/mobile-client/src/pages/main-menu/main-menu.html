@@ -5,14 +5,21 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>MainMenu</ion-title>
+    <ion-title>Main Menu</ion-title>
   </ion-navbar>
-
 </ion-header>
-
-
 <ion-content padding>
-
+  <ion-list-header>
+    “Life is either a daring adventure or nothing at all.”
+  </ion-list-header>
+  <ion-list>
+    <button ion-item class="team-item" (click)="openTeamManagement()">Team Management</button>
+    <button ion-item class="team-item" (click)="openPersonManagement()">Person Management</button>
+    <button ion-item class="team-item" (click)="openMeeting()">Meetings</button>
+    <button ion-item class="team-item">Technical stuff</button>
+  </ion-list>
 </ion-content>
+<ion-footer>
+  jmaczan, 2017
+</ion-footer>

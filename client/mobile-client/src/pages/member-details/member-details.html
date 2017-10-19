@@ -16,17 +16,55 @@
 <ion-content padding>
   <ion-list>
     Personal data:
-    <button class="member" ion-item>{{ member.forename }} {{ member.surname }}</button>
-    <button class="member" ion-item (click)="showModifyMemberDetails(member)">{{member.description}}</button>
+
+    <ion-item>
+      <ion-label color="primary">Forename</ion-label>
+      <ion-input class="member" placeholder="{{ member.forename }}"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary">Surname</ion-label>
+      <ion-input class="member" placeholder="{{ member.surname }}"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary">Description</ion-label>
+      <ion-input class="member" placeholder="{{member.description}}"></ion-input>
+    </ion-item>
+
     Function:
-    <button *ngIf="member.function !== null; else noInfo">{{member.function}}</button>
+
+    <ion-item>
+      <ion-label color="primary">Function</ion-label>
+      <ion-input class="member" placeholder="{{ member.function }}"></ion-input>
+    </ion-item>
+
+
     Scarf:
-    <button class="member" ion-item *ngIf="member.hasScarf; then present else notPresent"></button>
+
+    <ion-item>
+      <ion-label color="primary">Scarf</ion-label>
+      <ion-input class="member" placeholder="{{ member.hasScarf }}"></ion-input>
+    </ion-item>
+
     Anchor on scarf:
-    <button class="member" ion-item *ngIf="member.hasAnchorOnScarf; then present else notPresent"></button>
+
+    <ion-item>
+      <ion-label color="primary">Anchor on scarf</ion-label>
+      <ion-input class="member" placeholder="{{ member.hasAnchorOnScarf }}"></ion-input>
+    </ion-item>
+
     Cross:
-    <button class="member" ion-item *ngIf="member.hasCross; then present else notPresent"></button>
-    Technical data:
+
+    <ion-item>
+      <ion-label>Have cross?</ion-label>
+      <ion-select class="left">
+        <ion-option>has</ion-option>
+        <ion-option>hasnt</ion-option>
+      </ion-select>
+    </ion-item>
+
+      Technical data:
     <div *ngIf="member.memberId !== null">
       <div class="member" ion-item>memberId
         <button class="member" ion-item>{{ member.memberId }}</button>
@@ -62,7 +100,7 @@
   </ng-template>
 
   <ng-template #noInfo>
-    <button class="member" ion-item>No information</button>
+    <ion-input class="member" placeholder="No information"></ion-input>
   </ng-template>
 
 </ion-content>

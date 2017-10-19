@@ -18,7 +18,7 @@ import { TranslateService } from '@ngx-translate/core'
 })
 export class MyApp {
   private appLoaded = false;
-  private rootPage = TeamsListPage; //TODO
+  private rootPage = MainMenuPage; //TODO
 
   @ViewChild(Nav) nav: Nav;
 
