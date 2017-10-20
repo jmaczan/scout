@@ -52,6 +52,8 @@ class DevelopmentDataLoader implements ApplicationRunner {
 
         TeamMemberDto teamMemberDto = new TeamMemberDto();
         teamMemberDto.setPersonId(personId);
+        teamMemberDto.setHasScarf(true);
+        teamMemberDto.setHasCross(true);
 
         FunctionDto functionDto = new FunctionDto();
         functionDto.setName("Przyboczny");

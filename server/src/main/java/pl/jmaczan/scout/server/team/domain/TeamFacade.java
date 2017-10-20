@@ -89,6 +89,10 @@ public class TeamFacade {
             memberDto.setForename(personDto.getForename());
             memberDto.setSurname(personDto.getSurname());
             memberDto.setDescription(personDto.getDescription());
+            memberDto.setHasAnchorOnScarf(member.isHasAnchorOnScarf());
+            memberDto.setHasCross(member.isHasCross());
+            memberDto.setHasScarf(member.isHasScarf());
+//            memberDto.setFunction();
 //            memberDto.setCordId(member.get().getCordId());
 //            memberDto.setRankId(member.get().getRankId());
 //            memberDto.setMemberId(member.get().getId());

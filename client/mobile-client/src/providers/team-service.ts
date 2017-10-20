@@ -32,7 +32,6 @@ export class TeamService {
     );
   }
 
-
   getAllTeams() : Observable<Team[]> {
     return this.teamRestService.getAllTeams().map(
       response => {

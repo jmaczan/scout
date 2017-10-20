@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component, Input} from '@angular/core';
+import {App, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {Person} from "../../models/person";
+import {PersonDetailsPage} from "../person-details/person-details";
 
 /**
  * Generated class for the PersonPage page.
@@ -14,11 +16,20 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class PersonPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  @Input()
+  person: Person;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private appCtrl: App) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PersonPage');
+  }
+
+  showPersonDetails(person: Person) {
+    this.appCtrl.getRootNav().push(PersonDetailsPage, {
+      person: person
+    });
   }
 
 }

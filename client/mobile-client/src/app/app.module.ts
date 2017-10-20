@@ -34,6 +34,8 @@ import {PersonPage} from "../pages/person/person";
 import {PersonListPage} from "../pages/person-list/person-list";
 import {PersonDetailsPage} from "../pages/person-details/person-details";
 import {PersonManagementPage} from "../pages/person-management/person-management";
+import {PersonRestService } from '../providers/person-rest-service';
+import {PersonAddPage} from "../pages/person-add/person-add";
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -67,6 +69,7 @@ export function provideSettings(storage: Storage) {
     TeamPage,
     TeamsListPage,
     TeamManagementPage,
+    PersonAddPage,
     PersonPage,
     PersonListPage,
     PersonDetailsPage,
@@ -97,6 +100,7 @@ export function provideSettings(storage: Storage) {
     TeamPage,
     TeamsListPage,
     TeamManagementPage,
+    PersonAddPage,
     PersonPage,
     PersonListPage,
     PersonDetailsPage,
@@ -117,7 +121,8 @@ export function provideSettings(storage: Storage) {
     TeamRestService,
     MemberService,
     MemberRestService,
-    PersonService
+    PersonService,
+    PersonRestService
   ]
 })
 export class AppModule { }

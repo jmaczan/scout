@@ -19,12 +19,10 @@ export class TeamsListPage {
 
   private teams: Team[];
   private justStarted: boolean = true;
-  private splashScreen: SplashScreen;
   private teamsLoaded: boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private teamService: TeamService) {
     console.log('TeamsListPage: constructor invoked');
-    this.splashScreen = navParams.get("splashScreen");
   }
 
   ionViewDidLoad() {
@@ -42,9 +40,8 @@ export class TeamsListPage {
         }
       ).then(
         res => {
-          this.splashScreen.hide();
+
         }, err => {
-          this.splashScreen.hide();
         }
       );
     }

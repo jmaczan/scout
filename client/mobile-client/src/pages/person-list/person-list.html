@@ -5,14 +5,34 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>PersonList</ion-title>
+    <ion-title>Persons</ion-title>
   </ion-navbar>
-
 </ion-header>
-
-
 <ion-content padding>
-
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingText="Swipe down to refresh the persons"
+      refreshingText="Refreshing persons ...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <div *ngIf="personsLoaded; else personsLoadFailed">
+    <ion-list>
+      <page-person *ngFor="let person of persons" [person]="person"></page-person>
+    </ion-list>
+  </div>
+  <ng-template #personsLoadFailed>
+    <div class="flb">
+      <div class="Aligner-item Aligner-item--top"></div>
+      <label>Sorry, we couldn't get the person list ...</label>
+      <label>Swipe down to refresh!</label>
+      <div class="Aligner-item Aligner-item--bottom"></div>
+    </div>
+  </ng-template>
 </ion-content>
+<ion-footer *ngIf="personsLoaded">
+  <ion-fab right bottom >
+    <button ion-fab (click)="nothing()"><ion-icon name="navigate"></ion-icon></button>
+  </ion-fab>
+</ion-footer>
+

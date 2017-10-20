@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {App, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {TeamManagementPage} from "../team-management/team-management";
+import {PersonManagementPage} from "../person-management/person-management";
+import {SplashScreen} from "@ionic-native/splash-screen";
 
 /**
  * Generated class for the MainMenuPage page.
@@ -15,11 +17,22 @@ import {TeamManagementPage} from "../team-management/team-management";
 })
 export class MainMenuPage {
 
+  private justStarted: boolean = true;
+  private splashScreen: SplashScreen;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, private appCtrl: App) {
+    this.splashScreen = navParams.get("splashScreen");
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MainMenuPage');
+  }
+
+  ionViewDidEnter() {
+    if (this.justStarted) {
+      this.justStarted = false;
+      this.splashScreen.hide();
+    }
   }
 
   openTeamManagement() {
@@ -27,7 +40,7 @@ export class MainMenuPage {
   }
 
   openPersonManagement() {
-
+    this.appCtrl.getRootNav().push(PersonManagementPage);
   }
 
   openMeeting() {

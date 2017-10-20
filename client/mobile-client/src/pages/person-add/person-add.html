@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Person Details</ion-title>
+    <ion-title>Add Person</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -32,13 +32,6 @@
       <ion-input class="person" placeholder="{{ person.description }}"></ion-input>
     </ion-item>
 
-    Technical data:
-
-    <div *ngIf="person.id !== null">
-      <div class="person" ion-item>id
-        <button class="person" ion-item>{{ person.id }}</button>
-      </div>
-    </div>
   </ion-list>
   <ng-template #present>
     <button class="person" ion-item>Present</button>

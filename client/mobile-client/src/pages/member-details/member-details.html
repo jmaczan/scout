@@ -17,50 +17,46 @@
   <ion-list>
     Personal data:
 
-    <ion-item>
-      <ion-label color="primary">Forename</ion-label>
-      <ion-input class="member" placeholder="{{ member.forename }}"></ion-input>
-    </ion-item>
+    <div ion-item class="member">
+      {{ member.forename }}
+    </div>
 
-    <ion-item>
-      <ion-label color="primary">Surname</ion-label>
-      <ion-input class="member" placeholder="{{ member.surname }}"></ion-input>
-    </ion-item>
+    <div ion-item class="member">
+      {{ member.surname }}
+    </div>
 
-    <ion-item>
-      <ion-label color="primary">Description</ion-label>
-      <ion-input class="member" placeholder="{{member.description}}"></ion-input>
-    </ion-item>
-
-    Function:
-
-    <ion-item>
-      <ion-label color="primary">Function</ion-label>
-      <ion-input class="member" placeholder="{{ member.function }}"></ion-input>
-    </ion-item>
-
+    <div ion-item class="member">
+      {{ member.description }}
+    </div>
 
     Scarf:
 
+
     <ion-item>
-      <ion-label color="primary">Scarf</ion-label>
-      <ion-input class="member" placeholder="{{ member.hasScarf }}"></ion-input>
+      <ion-label>Have scarf?</ion-label>
+      <ion-select [(ngModel)]="member.hasScarf" class="left">
+        <ion-option value="true">has</ion-option>
+        <ion-option value="false">hasnt</ion-option>
+      </ion-select>
     </ion-item>
 
     Anchor on scarf:
 
     <ion-item>
-      <ion-label color="primary">Anchor on scarf</ion-label>
-      <ion-input class="member" placeholder="{{ member.hasAnchorOnScarf }}"></ion-input>
+      <ion-label>Have anchor on scarf?</ion-label>
+      <ion-select [(ngModel)]="member.hasAnchorOnScarf" class="left">
+        <ion-option value="true">has</ion-option>
+        <ion-option value="false">hasnt</ion-option>
+      </ion-select>
     </ion-item>
 
     Cross:
 
     <ion-item>
       <ion-label>Have cross?</ion-label>
-      <ion-select class="left">
-        <ion-option>has</ion-option>
-        <ion-option>hasnt</ion-option>
+      <ion-select [(ngModel)]="member.hasCross" class="left">
+        <ion-option value="true">has</ion-option>
+        <ion-option value="false">hasnt</ion-option>
       </ion-select>
     </ion-item>
 

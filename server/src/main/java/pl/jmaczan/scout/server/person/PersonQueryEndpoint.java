@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/person/query")
+@CrossOrigin
 class PersonQueryEndpoint {
 
     @Autowired

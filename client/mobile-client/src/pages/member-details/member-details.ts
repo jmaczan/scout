@@ -19,6 +19,7 @@ export class MemberDetailsPage {
   @Input()
   member: Member;
 
+
   constructor(public navCtrl: NavController, public navParams: NavParams, private appCtrl: App) {
     this.member = navParams.get('member');
   }

@@ -1,3 +1,15 @@
-page-person-details {
-
+.person {
+  background-color: #ffffff;
+  height:100%;
+  width:100%;
+  left: 5%;
+  animation: pulse 1s linear forwards;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: left;
+  align-items: left;
+  -webkit-justify-content: left;
+  justify-content: left;
 }

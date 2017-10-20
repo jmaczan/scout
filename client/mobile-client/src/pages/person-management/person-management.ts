@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {App, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {PersonListPage} from "../person-list/person-list";
+import {PersonAddPage} from "../person-add/person-add";
 
 /**
  * Generated class for the PersonManagementPage page.
@@ -14,11 +16,27 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class PersonManagementPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private appCtrl: App) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PersonManagementPage');
+  }
+
+  openAllPersons() {
+    this.appCtrl.getRootNav().push(PersonListPage);
+  }
+
+  addPerson() {
+    this.appCtrl.getRootNav().push(PersonAddPage);
+  }
+
+  modifyPerson() {
+
+  }
+
+  removePerson() {
+
   }
 
 }
