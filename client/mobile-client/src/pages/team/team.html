@@ -1,0 +1,16 @@
+
+<button ion-item (click)="toggleMembers()">
+  {{team.name}}
+</button>
+<div *ngIf="isMembersListToggled" >
+  <button class="member" ion-item *ngFor="let member of this.team.members" (click)="showMemberDetails(member)">
+    {{ member.forename }} {{ member.surname }}
+  </button>
+</div>
+<ng-template #detailsNotLoaded>
+  <div class="flb">
+    <div class="Aligner-item Aligner-item--top"></div>
+    <label>Details not loaded yet</label>
+    <div class="Aligner-item Aligner-item--bottom"></div>
+  </div>
+</ng-template>

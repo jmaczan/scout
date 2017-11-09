@@ -1,12 +1,17 @@
 package pl.jmaczan.scout.server.team.domain.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@JsonSerialize
 public class TeamDto {
 
     private Long id;
     private String name;
+    @JsonIgnore
     private List<TeamMemberWithFunctionDto> members = new ArrayList<>();
 
     public Long getId() {

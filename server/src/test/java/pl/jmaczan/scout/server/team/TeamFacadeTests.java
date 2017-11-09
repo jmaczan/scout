@@ -1,6 +1,8 @@
 package pl.jmaczan.scout.server.team;
 
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,18 @@ public class TeamFacadeTests {
     private TeamFacade teamFacade;
 
     //TODO test z ustawianiem ID przy tworzeniu memberów
+
+    @Before
+    public void setUp() {
+        teamFacade.removeAllTeams();
+        teamFacade.removeAllMembers();
+    }
+
+    @After
+    public void tearDown() {
+        teamFacade.removeAllTeams();
+        teamFacade.removeAllMembers();
+    }
 
     @Test
     public void should_addTeamMemberAndSaveHisFunction_when_hisTeamExistsAndDataIsCorrect() {
@@ -49,6 +63,15 @@ public class TeamFacadeTests {
         List<TeamDto> teamsUpdated = teamFacade.getAllTeams();
 
         List<TeamMemberDto> teamMembersUpdated = teamFacade.getAllMembers();
+
+        for(TeamMemberWithFunctionDto tmo : teamsUpdated.get(0).getMembers()) {
+            System.out.println(tmo.getTeamMemberDto().toString() + " | " + tmo.getFunctionDto().toString());
+        }
+
+        for(TeamMemberDto teamMemberDto1 : teamMembersUpdated) {
+            System.out.println(teamMemberDto1);
+        }
+
 
         //THEN
         Assert.assertEquals(1, teamsUpdated.size());

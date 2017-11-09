@@ -28,6 +28,10 @@ public class PersonFacade {
         personCommandService.modifyPerson(person);
     }
 
+    public PersonDto getPerson(Long personId) {
+        return mapper.personToPersonDto(personQueryService.getPerson(personId));
+    }
+
     public PersonDto getPerson(PersonDto personDto) {
         Person person = mapper.personDtoToPerson(personDto);
         return mapper.personToPersonDto(personQueryService.getPerson(person));

@@ -24,6 +24,11 @@ public class PersonFacadeTests {
     @Autowired
     private PersonFacade personFacade;
 
+    @Before
+    public void setUp() {
+        personFacade.removeAllPersons();
+    }
+
     @Test
     public void should_returnCorrectPerson_when_personHasBeenAdded() {
         //GIVEN

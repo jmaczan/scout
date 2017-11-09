@@ -79,4 +79,17 @@ public class TeamMemberDto {
     public void setHasCross(boolean hasCross) {
         this.hasCross = hasCross;
     }
+
+    @Override
+    public String toString() {
+        return "TeamMemberDto{" +
+                "id=" + id +
+                ", personId=" + personId +
+                ", rankId=" + rankId +
+                ", cordId=" + cordId +
+                ", hasScarf=" + hasScarf +
+                ", hasAnchorOnScarf=" + hasAnchorOnScarf +
+                ", hasCross=" + hasCross +
+                '}';
+    }
 }

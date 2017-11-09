@@ -14,7 +14,7 @@ class Team {
     @Embedded
     private TeamName name;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.REMOVE)
     private Map<TeamMember, Function> members = new HashMap<>();
 
     public Long getId() {

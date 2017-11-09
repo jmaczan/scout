@@ -21,11 +21,19 @@ class TeamMemberService {
         return teamMemberRepository.findAll();
     }
 
+    TeamMember getMember(Long id) {
+        return teamMemberRepository.getOne(id);
+    }
+
     void removeTeamMember(Long id) {
         teamMemberRepository.delete(id);
     }
 
     void removeTeamMember(TeamMember teamMember) {
         teamMemberRepository.delete(teamMember);
+    }
+
+    void removeAllMembers() {
+        teamMemberRepository.deleteAll();
     }
 }
