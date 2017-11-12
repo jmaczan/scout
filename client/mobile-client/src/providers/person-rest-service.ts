@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import {Person} from "../models/person";
 
 /*
   Generated class for the PersonRestServiceProvider provider.
@@ -13,6 +14,7 @@ export class PersonRestService {
 
   private personServerURL: string  = "http://localhost:8080/person";
   private getAllPersonsSuffix:  string = "/query";
+  private addPersonSuffix: string = "/command/add";
 
   constructor(public http: Http) {
     console.log('Hello TeamRestService Provider');
@@ -21,6 +23,11 @@ export class PersonRestService {
   getAllPersons() {
     const url = this.personServerURL + this.getAllPersonsSuffix;
     return this.http.get(url);
+  }
+
+  addPerson(person: Person) {
+    const url = this.personServerURL + this.addPersonSuffix;
+    return this.http.post(url, person);
   }
 
 

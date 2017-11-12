@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {App, NavController, NavParams} from 'ionic-angular';
 import {TeamsListPage} from "../teams-list/teams-list";
-import {PersonManagementPage} from "../person-management/person-management";
+import {TeamAddPage} from "../team-add/team-add";
 
 /**
  * Generated class for the TeamManagementPage page.
@@ -28,7 +28,7 @@ export class TeamManagementPage {
   }
 
   addTeam() {
-
+    this.appCtrl.getRootNav().push(TeamAddPage);
   }
 
   modifyTeam() {

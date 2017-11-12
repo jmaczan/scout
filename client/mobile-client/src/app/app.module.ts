@@ -36,6 +36,13 @@ import {PersonDetailsPage} from "../pages/person-details/person-details";
 import {PersonManagementPage} from "../pages/person-management/person-management";
 import {PersonRestService } from '../providers/person-rest-service';
 import {PersonAddPage} from "../pages/person-add/person-add";
+import {TeamAddPage} from "../pages/team-add/team-add";
+import {TeamMemberAddPage} from "../pages/team-member-add/team-member-add";
+import { MeetingService } from '../providers/meeting-service';
+import { MeetingRestService } from '../providers/meeting-rest-service';
+import {MeetingManagementPage} from "../pages/meeting-management/meeting-management";
+import {MeetingsListPage} from "../pages/meetings-list/meetings-list";
+import {MeetingPage} from "../pages/meeting/meeting";
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -65,7 +72,12 @@ export function provideSettings(storage: Storage) {
     MemberPage,
     MemberDetailsPage,
     MemberListPage,
+    MeetingPage,
+    MeetingManagementPage,
+    MeetingsListPage,
     ModifyMemberDetailsPage,
+    TeamAddPage,
+    TeamMemberAddPage,
     TeamPage,
     TeamsListPage,
     TeamManagementPage,
@@ -96,7 +108,12 @@ export function provideSettings(storage: Storage) {
     MemberPage,
     MemberDetailsPage,
     MemberListPage,
+    MeetingPage,
+    MeetingManagementPage,
+    MeetingsListPage,
     ModifyMemberDetailsPage,
+    TeamAddPage,
+    TeamMemberAddPage,
     TeamPage,
     TeamsListPage,
     TeamManagementPage,
@@ -122,7 +139,9 @@ export function provideSettings(storage: Storage) {
     MemberService,
     MemberRestService,
     PersonService,
-    PersonRestService
+    PersonRestService,
+    MeetingService,
+    MeetingRestService
   ]
 })
 export class AppModule { }

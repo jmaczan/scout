@@ -26,6 +26,7 @@ export class PersonListPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PersonListPage');
+    this.fetchPersons();
   }
 
   ionViewDidEnter() {
@@ -54,6 +55,13 @@ export class PersonListPage {
       );
     })
   }
+
+  doRefresh(refresher) {
+    console.log('TeamsListPage: teams list refresh requested', refresher);
+    this.fetchPersons().then(
+      refresher.complete());
+  }
+
 
   nothing() {
 

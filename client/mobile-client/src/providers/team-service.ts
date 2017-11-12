@@ -5,9 +5,12 @@ import 'rxjs/add/operator/map';
 import { TeamRestService } from '../providers/team-rest-service';
 import { Team } from '../models/team';
 import {Observable} from "rxjs/Observable";
+import {Member} from "../models/member";
 
 @Injectable()
 export class TeamService {
+
+  teams: Team[] = null;
 
   constructor(private http: Http, private teamRestService: TeamRestService) {
 
@@ -22,6 +25,8 @@ export class TeamService {
         responseObjects.forEach(object => {
           teams.push(Object.assign(new Team(), object));
         });
+
+        this.teams = teams;
 
         return teams;
       },
@@ -42,6 +47,8 @@ export class TeamService {
           teams.push(Object.assign(new Team(), object));
         });
 
+        this.teams = teams;
+
         return teams;
       },
       error => {
@@ -51,5 +58,12 @@ export class TeamService {
     );
   }
 
+  addTeam(team: Team) {
+    return this.teamRestService.addTeam(team).subscribe();
+  }
+
+  addTeamMember(member: Member) {
+    return this.teamRestService.addTeamMember(member).subscribe();
+  }
 
 }
