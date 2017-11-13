@@ -46,6 +46,18 @@ public class TeamFacade {
         teamCommandService.addTeamMemberWithFunction(teamId, teamMember, function);
     }
 
+    public void addMember(AddTeamMemberDto dto) {
+        Long teamId = dto.getTeamId();
+        Long personId = dto.getPersonId();
+        TeamMemberDto teamMemberDto = new TeamMemberDto();
+        teamMemberDto.setPersonId(personId);
+        TeamMember teamMember = teamMemberMapper.teamMemberDtoToTeamMember(teamMemberDto);
+        FunctionDto functionDto = new FunctionDto();
+        functionDto.setName("Szeregowy");
+        Function function = functionMapper.functionDtoToFunction(functionDto);
+        teamCommandService.addTeamMemberWithFunction(teamId, teamMember, function);
+    }
+
     public List<TeamDto> getAllTeams() {
         return teamMapper.teamsToTeamDtos(teamQueryService.getAllTeams());
     }

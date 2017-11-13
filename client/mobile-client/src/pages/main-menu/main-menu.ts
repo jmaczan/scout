@@ -3,6 +3,7 @@ import {App, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {TeamManagementPage} from "../team-management/team-management";
 import {PersonManagementPage} from "../person-management/person-management";
 import {SplashScreen} from "@ionic-native/splash-screen";
+import {MeetingManagementPage} from "../meeting-management/meeting-management";
 
 /**
  * Generated class for the MainMenuPage page.
@@ -44,6 +45,6 @@ export class MainMenuPage {
   }
 
   openMeeting() {
-
+    this.appCtrl.getRootNav().push(MeetingManagementPage);
   }
 }

@@ -7,10 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.jmaczan.scout.server.person.domain.PersonFacade;
 import pl.jmaczan.scout.server.person.domain.dto.PersonDto;
 import pl.jmaczan.scout.server.team.domain.TeamFacade;
-import pl.jmaczan.scout.server.team.domain.dto.AddTeamMemberWithFunctionDto;
-import pl.jmaczan.scout.server.team.domain.dto.FunctionDto;
-import pl.jmaczan.scout.server.team.domain.dto.TeamDto;
-import pl.jmaczan.scout.server.team.domain.dto.TeamMemberDto;
+import pl.jmaczan.scout.server.team.domain.dto.*;
 
 @Transactional
 class DevelopmentDataLoader implements ApplicationRunner {

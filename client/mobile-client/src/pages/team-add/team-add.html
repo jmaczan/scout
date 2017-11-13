@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Add Person</ion-title>
+    <ion-title>Add Team</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,28 +15,18 @@
 
 <ion-content padding>
   <ion-list>
-    Personal data:
+    Team Name:
 
     <ion-item>
-      <ion-label color="primary">Forename</ion-label>
-      <ion-input [(ngModel)]="person.forename" class="person" placeholder="{{ person.forename }}"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label color="primary">Surname</ion-label>
-      <ion-input [(ngModel)]="person.surname" class="person" placeholder="{{ person.surname }}"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label color="primary">Description</ion-label>
-      <ion-input [(ngModel)]="person.description" class="person" placeholder="{{ person.description }}"></ion-input>
+      <ion-label color="primary">Team Name</ion-label>
+      <ion-input [(ngModel)]="team.name" class="team"></ion-input>
     </ion-item>
 
     <button ion-button (click)="logEvent($event)">
-      Add person
+      Add team
     </button>
 
-    <div *ngIf="this.addPersonInvoked">Person added!</div>
+    <div *ngIf="this.addTeamInvoked">Team added!</div>
 
 
   </ion-list>

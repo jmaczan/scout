@@ -24,6 +24,24 @@ class TeamCommandService {
         this.teamRepository.save(team);
     }
 
+    void addTeamMemberWithFunction(Long teamId, TeamMember teamMember) {
+        Team team = teamRepository.findOne(teamId);
+        if(team == null) {
+            throw new DataValidationException("There's no such team in database");
+        }
+        TeamMember savedTeamMember = teamMemberService.addTeamMember(teamMember);
+        team.addMember(savedTeamMember, null); // TODO - Function instead of null
+        teamRepository.save(team);
+        teamRepository.flush();
+        /*
+        co trzeba zrobic:
+        sprawdzenie czy team istnieje
+        napisanie mapera dla team member i function
+        zapisanie do bazy team member i function
+         */
+    }
+
+
     void addTeamMemberWithFunction(Long teamId, TeamMember teamMember, Function function) {
         Team team = teamRepository.findOne(teamId);
         if(team == null) {

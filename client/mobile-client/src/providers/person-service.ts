@@ -14,6 +14,8 @@ import {Person} from "../models/person";
 @Injectable()
 export class PersonService {
 
+  persons: Person[] = null;
+
   constructor(public http: Http, private personRestService: PersonRestService) {
     console.log('Hello PersonServiceProvider Provider');
   }
@@ -28,6 +30,8 @@ export class PersonService {
           persons.push(Object.assign(new Person(), object));
         });
 
+        this.persons = persons;
+
         return persons;
       },
       error => {
@@ -35,6 +39,10 @@ export class PersonService {
         return [];
       }
     );
+  }
+
+  addPerson(person: Person) {
+    return this.personRestService.addPerson(person).subscribe();
   }
 
 }
