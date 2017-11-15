@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {App, NavController, NavParams} from 'ionic-angular';
 import {MeetingsListPage} from "../meetings-list/meetings-list";
+import {MeetingAddTeamsPage} from "../meeting-add-teams/meeting-add-teams";
 
 /**
  * Generated class for the MeetingManagementPage page.
@@ -27,7 +28,7 @@ export class MeetingManagementPage {
   }
 
   addMeeting() {
-
+    this.appCtrl.getRootNav().push(MeetingAddTeamsPage);
   }
 
   removeMeeting() {

@@ -25,7 +25,7 @@ class MeetingEndpoint {
     }
 
     @PostMapping(value="/add", produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<?> addTeam(@RequestBody MeetingDto meetingDto) {
+    ResponseEntity<?> addMeeting(@RequestBody MeetingDto meetingDto) {
         meetingFacade.addMeeting(meetingDto);
         return new ResponseEntity<>(HttpStatus.OK);
     }

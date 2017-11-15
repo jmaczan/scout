@@ -35,14 +35,16 @@ export class MeetingsListPage {
       this.justStarted = false;
       this.fetchMeetingsList().then(
         res => {
+          console.log("Loaded meetings.");
         },
         err => {
-          console.log("Failed to fetch teams.");
+          console.log("Failed to fetch meetings.");
         }
       ).then(
         res => {
-
+          console.log("Loaded meetings.");
         }, err => {
+          console.log("Failed to fetch meetings.");
         }
       );
     }
@@ -53,6 +55,7 @@ export class MeetingsListPage {
       this.meetingService.getAllMeetings().subscribe(
         res => {
           this.meetings = res;
+          console.log(res);
           this.meetingsLoaded = true;
         }, err => {
           this.meetings = [];

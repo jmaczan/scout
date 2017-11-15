@@ -1,35 +1,32 @@
 import { Component } from '@angular/core';
 import {App, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {Team} from "../../models/team";
-import {SplashScreen} from "@ionic-native/splash-screen";
 import {TeamService} from "../../providers/team-service";
-import {TeamMemberAddPage} from "../team-member-add/team-member-add";
+import {MeetingAddParticipantsPage} from "../meeting-add-participants/meeting-add-participants";
 
 /**
- * Generated class for the TeamsListPage page.
+ * Generated class for the MeetingAddTeamsPage page.
  *
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
 
 @Component({
-  selector: 'page-teams-list',
-  templateUrl: 'teams-list.html',
+  selector: 'page-meeting-add-teams',
+  templateUrl: 'meeting-add-teams.html',
 })
-export class TeamsListPage {
+export class MeetingAddTeamsPage {
 
   teams: Team[];
+  teamsWithChoiceDecision: any[] = [];
   private justStarted: boolean = true;
   private teamsLoaded: boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private appCtrl: App, private teamService: TeamService) {
-    console.log('TeamsListPage: constructor invoked');
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad TeamsListPage');
-    this.fetchTeamsAndMembersList().then(
-    );
+    console.log('ionViewDidLoad MeetingAddTeamsPage');
   }
 
   ionViewDidEnter() {
@@ -37,6 +34,7 @@ export class TeamsListPage {
       this.justStarted = false;
       this.fetchTeamsAndMembersList().then(
         res => {
+
         },
         err => {
           console.log("Failed to fetch teams.");
@@ -50,11 +48,26 @@ export class TeamsListPage {
     }
   }
 
+  logEvent(event) {
+    this.addParticipants();
+  }
+
+  addParticipants() {
+    this.appCtrl.getRootNav().push(MeetingAddParticipantsPage, {chosenTeams: this.chosenTeams() });
+  }
+
+  chosenTeams() : Team[] {
+    return this.teamsWithChoiceDecision.filter(value => value.checked);
+  }
+
   fetchTeamsAndMembersList() {
     return new Promise((resolve, reject) => {
       this.teamService.getAllTeamsAndMembers().subscribe(
         res => {
           this.teams = res;
+          this.teams.forEach(team => {
+            this.teamsWithChoiceDecision.push({team: team, checked: false});
+          });
           this.teamsLoaded = true;
         }, err => {
           this.teams = [];
@@ -62,26 +75,6 @@ export class TeamsListPage {
         }
       );
     })
-  }
-
-  fetchTeamsList() {
-    return new Promise((resolve, reject) => {
-       this.teamService.getAllTeams().subscribe(
-        res => {
-          this.teams = res;
-          this.teamsLoaded = true;
-
-        }, err => {
-          this.teams = [];
-          this.teamsLoaded = true;
-        }
-      );
-    })
-  }
-
-  openTeamMember() {
-    this.appCtrl.getRootNav().push(TeamMemberAddPage);
-    //TODO open addteammemberpage
   }
 
   doRefresh(refresher) {
@@ -89,8 +82,5 @@ export class TeamsListPage {
     this.fetchTeamsAndMembersList().then(refresher.complete());
   }
 
-  nothing() {
-
-  }
 
 }

@@ -17,7 +17,8 @@ class ParticipationRatingMapperDecorator implements ParticipationRatingMapper {
 
     @Override
     public ParticipationRating participationRatingDtoToParticipationRating(ParticipationRatingDto participationRatingDto) {
-        return this.delegate.participationRatingDtoToParticipationRating(participationRatingDto);
+        ParticipationRating participationRating = this.delegate.participationRatingDtoToParticipationRating(participationRatingDto);
+        return participationRating;
     }
 
 }

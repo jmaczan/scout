@@ -4,7 +4,7 @@ export class Team {
 
   id: number;
   name: string;
-  members: Member[];
+  members: Member[] = [];
 
   constructor() {
   }

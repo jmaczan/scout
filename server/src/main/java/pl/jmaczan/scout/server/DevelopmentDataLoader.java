@@ -4,10 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.transaction.annotation.Transactional;
+import pl.jmaczan.scout.server.meeting.domain.MeetingFacade;
+import pl.jmaczan.scout.server.meeting.domain.dto.MeetingDto;
+import pl.jmaczan.scout.server.meeting.domain.dto.ParticipationRatingDto;
 import pl.jmaczan.scout.server.person.domain.PersonFacade;
 import pl.jmaczan.scout.server.person.domain.dto.PersonDto;
 import pl.jmaczan.scout.server.team.domain.TeamFacade;
 import pl.jmaczan.scout.server.team.domain.dto.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Transactional
 class DevelopmentDataLoader implements ApplicationRunner {
@@ -17,6 +23,9 @@ class DevelopmentDataLoader implements ApplicationRunner {
 
     @Autowired
     private TeamFacade teamFacade;
+
+    @Autowired
+    private MeetingFacade meetingFacade;
 
     @Override
     public void run(ApplicationArguments args) {
@@ -43,7 +52,9 @@ class DevelopmentDataLoader implements ApplicationRunner {
 
         Long teamId = null;
 
-        for(TeamDto dto : teamFacade.getAllTeams()) {
+        List<TeamDto> allTeams =  teamFacade.getAllTeams();
+
+        for(TeamDto dto : allTeams) {
             teamId = dto.getId();
         }
 
@@ -61,6 +72,30 @@ class DevelopmentDataLoader implements ApplicationRunner {
         addTeamMemberWithFunctionDto.setFunctionDto(functionDto);
 
         teamFacade.addMember(addTeamMemberWithFunctionDto);
+
+        Long memberId = teamFacade.getAllTeamsWithMembers().get(1).getMembers().get(0).getMemberId();
+
+        List<Long> teamsInvolved = new ArrayList<>();
+        teamsInvolved.add(allTeams.get(0).getId());
+        teamsInvolved.add(allTeams.get(1).getId());
+
+        ParticipationRatingDto ratingDto1 = new ParticipationRatingDto();
+        ratingDto1.setTeamMemberId(memberId);
+        ratingDto1.setActivity(2);
+        ratingDto1.setBehavior(0);
+        ratingDto1.setPresence(1);
+        ratingDto1.setPunctuality(-1);
+        ratingDto1.setUniform(-2);
+
+        List<ParticipationRatingDto> participationRatingDtos = new ArrayList<>();
+        participationRatingDtos.add(ratingDto1);
+
+        MeetingDto meetingDto = new MeetingDto();
+        meetingDto.setTeamsInvolved(teamsInvolved);
+        meetingDto.setDescription("Good meeting!");
+        meetingDto.setParticipationRatings(participationRatingDtos);
+
+        meetingFacade.addMeeting(meetingDto);
     }
 
 }

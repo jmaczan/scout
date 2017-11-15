@@ -43,6 +43,13 @@ import { MeetingRestService } from '../providers/meeting-rest-service';
 import {MeetingManagementPage} from "../pages/meeting-management/meeting-management";
 import {MeetingsListPage} from "../pages/meetings-list/meetings-list";
 import {MeetingPage} from "../pages/meeting/meeting";
+import {MeetingAddTeamsPage} from "../pages/meeting-add-teams/meeting-add-teams";
+import {MeetingAddParticipantsPage} from "../pages/meeting-add-participants/meeting-add-participants";
+import {MeetingRateActivityPage} from "../pages/meeting-rate-activity/meeting-rate-activity";
+import {MeetingRateBehaviorPage} from "../pages/meeting-rate-behavior/meeting-rate-behavior";
+import {MeetingRatePresencePage} from "../pages/meeting-rate-presence/meeting-rate-presence";
+import {MeetingRatePunctualityPage} from "../pages/meeting-rate-punctuality/meeting-rate-punctuality";
+import {MeetingRateUniformPage} from "../pages/meeting-rate-uniform/meeting-rate-uniform";
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -72,6 +79,13 @@ export function provideSettings(storage: Storage) {
     MemberPage,
     MemberDetailsPage,
     MemberListPage,
+    MeetingAddTeamsPage,
+    MeetingAddParticipantsPage,
+    MeetingRateActivityPage,
+    MeetingRateBehaviorPage,
+    MeetingRatePresencePage,
+    MeetingRatePunctualityPage,
+    MeetingRateUniformPage,
     MeetingPage,
     MeetingManagementPage,
     MeetingsListPage,
@@ -108,6 +122,13 @@ export function provideSettings(storage: Storage) {
     MemberPage,
     MemberDetailsPage,
     MemberListPage,
+    MeetingAddTeamsPage,
+    MeetingAddParticipantsPage,
+    MeetingRateActivityPage,
+    MeetingRateBehaviorPage,
+    MeetingRatePresencePage,
+    MeetingRatePunctualityPage,
+    MeetingRateUniformPage,
     MeetingPage,
     MeetingManagementPage,
     MeetingsListPage,
