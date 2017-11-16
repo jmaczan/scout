@@ -53,10 +53,10 @@ export class MeetingAddTeamsPage {
   }
 
   addParticipants() {
-    this.appCtrl.getRootNav().push(MeetingAddParticipantsPage, {chosenTeams: this.chosenTeams() });
+    this.appCtrl.getRootNav().push(MeetingAddParticipantsPage, {chosenTeams: this.chosenTeamsFiltered() });
   }
 
-  chosenTeams() : Team[] {
+  chosenTeamsFiltered() {
     return this.teamsWithChoiceDecision.filter(value => value.checked);
   }
 

@@ -40,11 +40,22 @@ export class MeetingAddParticipantsPage {
   }
 
   ratePunctuality() {
-    this.appCtrl.getRootNav().push(MeetingRatePunctualityPage, {chosenMembers: this.chosenMembersFiltered() });
+    this.appCtrl.getRootNav().push(MeetingRatePunctualityPage, {chosenMembers: this.chosenMembersFiltered(), chosenTeams: this.chosenTeamsFiltered() });
   }
 
   chosenMembersFiltered() : any[] {
     return this.chosenMembers.filter(value => value.checked);
+  }
+
+  chosenTeamsFiltered() : number[] {
+    let teamsInvolved: number[] = [];
+    this.chosenTeams.forEach(chosenTeam => {
+      if(!(teamsInvolved.includes(chosenTeam.team.id))) {
+        teamsInvolved.push(chosenTeam.team.id);
+      }
+    });
+
+    return teamsInvolved;
   }
 
   ionViewDidEnter() {

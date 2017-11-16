@@ -16,14 +16,16 @@ import {MeetingRateBehaviorPage} from "../meeting-rate-behavior/meeting-rate-beh
 export class MeetingRateActivityPage {
 
   participantsWithRatings: any[] = [];
+  chosenTeams: number[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private appCtrl: App) {
     this.participantsWithRatings = navParams.get("participantsWithRatings");
+    this.chosenTeams = navParams.get("chosenTeams");
     console.log(this.participantsWithRatings.length);
     console.log(this.participantsWithRatings[0].member.forename);
   }
   next(event) {
-    this.appCtrl.getRootNav().push(MeetingRateBehaviorPage, {participantsWithRatings: this.participantsWithRatings });
+    this.appCtrl.getRootNav().push(MeetingRateBehaviorPage, {participantsWithRatings: this.participantsWithRatings, chosenTeams: this.chosenTeams});
   }
 
   ionViewDidLoad() {

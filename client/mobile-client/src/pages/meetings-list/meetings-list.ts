@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import {App, NavController, NavParams} from 'ionic-angular';
 import {Meeting} from "../../models/meeting";
 import {MeetingService} from "../../providers/meeting-service";
+import {MeetingDetailsPage} from "../meeting-details/meeting-details";
 
 /**
  * Generated class for the MeetingsListPage page.
@@ -20,7 +21,7 @@ export class MeetingsListPage {
   private justStarted: boolean = true;
   private meetingsLoaded: boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private meetingService: MeetingService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private appCtrl: App, private meetingService: MeetingService) {
   }
 
   ionViewDidLoad() {
@@ -63,6 +64,12 @@ export class MeetingsListPage {
         }
       );
     })
+  }
+
+  showMeetingDetails(meeting) {
+    this.appCtrl.getRootNav().push(MeetingDetailsPage, {
+      meeting: meeting
+    });
   }
 
   doRefresh(refresher) {

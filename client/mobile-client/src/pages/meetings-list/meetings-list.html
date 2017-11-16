@@ -18,7 +18,7 @@
   </ion-refresher>
   <div *ngIf="meetingsLoaded; else meetingsLoadFailed">
     <ion-list>
-      <page-meeting *ngFor="let meeting of meetings" [meeting]="meeting"></page-meeting>
+      <page-meeting *ngFor="let meeting of meetings" [meeting]="meeting" (click)="showMeetingDetails(meeting)"></page-meeting>
     </ion-list>
   </div>
   <ng-template #meetingsLoadFailed>

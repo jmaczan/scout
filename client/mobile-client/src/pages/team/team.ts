@@ -37,7 +37,6 @@ export class TeamPage {
     this.appCtrl.getRootNav().push(MemberDetailsPage, {
       member: member
     });
-
   }
 
   loadTeamMemberDetailsIfNotLoaded() {

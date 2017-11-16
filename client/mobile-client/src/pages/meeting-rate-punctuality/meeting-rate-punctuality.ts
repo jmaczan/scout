@@ -18,9 +18,11 @@ import {MeetingRateUniformPage} from "../meeting-rate-uniform/meeting-rate-unifo
 export class MeetingRatePunctualityPage {
 
   participantsWithRatings: any[] = [];
+  chosenTeams: number[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private appCtrl: App) {
     let chosenMembers = navParams.get("chosenMembers");
+    this.chosenTeams = navParams.get("chosenTeams");
     chosenMembers.forEach(chosenMember => {
       this.participantsWithRatings.push({member: chosenMember.member, rating: new ParticipationRating()});
     });
@@ -28,7 +30,7 @@ export class MeetingRatePunctualityPage {
     console.log(this.participantsWithRatings[0].member.forename);
   }
   next(event) {
-    this.appCtrl.getRootNav().push(MeetingRateUniformPage, {participantsWithRatings: this.participantsWithRatings });
+    this.appCtrl.getRootNav().push(MeetingRateUniformPage, {participantsWithRatings: this.participantsWithRatings, chosenTeams: this.chosenTeams });
   }
 
   logEvent(event) {
