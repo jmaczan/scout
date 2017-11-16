@@ -11,8 +11,35 @@
   </ion-navbar>
 
 </ion-header>
-
-
 <ion-content padding>
-
+  <div *ngFor="let participant of participantsWithRatings">
+    <ion-list radio-group [(ngModel)]="participant.rating.uniform">
+      <ion-list-header>
+        {{ participant.member.forename }} {{ participant.member.surname }}
+      </ion-list-header>
+      <ion-item>
+        <ion-label>-2</ion-label>
+        <ion-radio color="black" value="-2">-2</ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>-1</ion-label>
+        <ion-radio color="dark" value="-1">-1</ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>0</ion-label>
+        <ion-radio color="gray" value="0"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>1</ion-label>
+        <ion-radio color="primary" value="1"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>2</ion-label>
+        <ion-radio color="light" value="2"></ion-radio>
+      </ion-item>
+    </ion-list>
+  </div>
+  <button ion-button (click)="next($event)">
+    Next
+  </button>
 </ion-content>

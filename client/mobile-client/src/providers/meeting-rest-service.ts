@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import {Meeting} from "../models/meeting";
 
 /*
   Generated class for the MeetingRestServiceProvider provider.
@@ -12,7 +13,8 @@ import 'rxjs/add/operator/map';
 export class MeetingRestService {
 
   private meetingsServerURL: string  = "http://localhost:8080/meeting";
-  private getAllMeetingsSuffix:  string = "/";
+  private getAllMeetingsSuffix: string = "/";
+  private addMeetingSuffix: string = "/add";
 
   constructor(public http: Http) {
     console.log('Hello MeetingRestServiceProvider Provider');
@@ -23,5 +25,9 @@ export class MeetingRestService {
     return this.http.get(url);
   }
 
+  addMeeting(meeting: Meeting) {
+    const url = this.meetingsServerURL + this.addMeetingSuffix;
+    return this.http.post(url, meeting);
+  }
 
 }

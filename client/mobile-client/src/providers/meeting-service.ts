@@ -41,4 +41,8 @@ export class MeetingService {
     );
   }
 
+  addMeeting(meeting: Meeting) {
+    return this.meetingRestService.addMeeting(meeting).subscribe();
+  }
+
 }

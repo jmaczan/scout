@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import {App, NavController, NavParams} from 'ionic-angular';
+import {MeetingRateBehaviorPage} from "../meeting-rate-behavior/meeting-rate-behavior";
 
 /**
  * Generated class for the MeetingRateActivityPage page.
@@ -14,7 +15,15 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class MeetingRateActivityPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  participantsWithRatings: any[] = [];
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private appCtrl: App) {
+    this.participantsWithRatings = navParams.get("participantsWithRatings");
+    console.log(this.participantsWithRatings.length);
+    console.log(this.participantsWithRatings[0].member.forename);
+  }
+  next(event) {
+    this.appCtrl.getRootNav().push(MeetingRateBehaviorPage, {participantsWithRatings: this.participantsWithRatings });
   }
 
   ionViewDidLoad() {

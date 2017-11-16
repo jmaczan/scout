@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {App, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {Member} from "../../models/member";
 import {ParticipationRating} from "../../models/participation-rating";
+import {MeetingRateUniformPage} from "../meeting-rate-uniform/meeting-rate-uniform";
 
 /**
  * Generated class for the MeetingRatePunctualityPage page.
@@ -16,18 +17,25 @@ import {ParticipationRating} from "../../models/participation-rating";
 })
 export class MeetingRatePunctualityPage {
 
-  participants: Member[] = [];
-  participationRatings: ParticipationRating[] = [];
+  participantsWithRatings: any[] = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private appCtrl: App) {
     let chosenMembers = navParams.get("chosenMembers");
-    chosenMembers.forEach(member => {
-      this.participants.push(member.member);
+    chosenMembers.forEach(chosenMember => {
+      this.participantsWithRatings.push({member: chosenMember.member, rating: new ParticipationRating()});
     });
-    console.log(this.participants.length);
-    console.log(this.participants[0].forename);
+    console.log(this.participantsWithRatings.length);
+    console.log(this.participantsWithRatings[0].member.forename);
+  }
+  next(event) {
+    this.appCtrl.getRootNav().push(MeetingRateUniformPage, {participantsWithRatings: this.participantsWithRatings });
+  }
 
-    //todo: upchac partycypantow do participationratings
+  logEvent(event) {
+    console.log(this.participantsWithRatings[0].rating.punctuality);
+    if(this.participantsWithRatings.length > 1) {
+      console.log(this.participantsWithRatings[1].rating.punctuality);
+    }
   }
 
   ionViewDidLoad() {
