@@ -18,7 +18,7 @@
   </ion-refresher>
   <div *ngIf="personsLoaded; else personsLoadFailed">
     <ion-list>
-      <page-person *ngFor="let person of persons" [person]="person"></page-person>
+      <page-person (press)="pressEvent(person)" *ngFor="let person of persons" [person]="person"></page-person>
     </ion-list>
   </div>
   <ng-template #personsLoadFailed>
@@ -32,7 +32,7 @@
 </ion-content>
 <ion-footer *ngIf="personsLoaded">
   <ion-fab right bottom >
-    <button ion-fab (click)="nothing()"><ion-icon name="navigate"></ion-icon></button>
+    <button ion-fab (click)="addPerson()"><ion-icon name=""><b>+</b></ion-icon></button>
   </ion-fab>
 </ion-footer>
 

@@ -15,6 +15,7 @@ export class PersonRestService {
   private personServerURL: string  = "http://localhost:8080/person";
   private getAllPersonsSuffix:  string = "/query";
   private addPersonSuffix: string = "/command/add";
+  private removePersonSuffix: string = "/command/remove"
 
   constructor(public http: Http) {
     console.log('Hello TeamRestService Provider');
@@ -30,6 +31,9 @@ export class PersonRestService {
     return this.http.post(url, person);
   }
 
-
+  removePerson(person: Person) {
+    const url = this.personServerURL + this.removePersonSuffix;
+    return this.http.post(url, person);
+  }
 
 }

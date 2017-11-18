@@ -4,6 +4,7 @@ import 'rxjs/add/operator/map';
 import {Observable} from "rxjs/Observable";
 import {PersonRestService} from "./person-rest-service";
 import {Person} from "../models/person";
+import {Subscription} from "rxjs/Subscription";
 
 /*
   Generated class for the PersonServiceProvider provider.
@@ -43,6 +44,16 @@ export class PersonService {
 
   addPerson(person: Person) {
     return this.personRestService.addPerson(person).subscribe();
+  }
+
+  removePersonSubscriptionFunctions(person: Person,
+                                    onNext: () => void,
+                                    onError: () => void) : Subscription {
+    return this.personRestService.removePerson(person).subscribe(next => { onNext() }, error => { onError() } );
+  }
+
+  removePerson(person: Person) : Subscription {
+    return this.personRestService.removePerson(person).subscribe();
   }
 
 }

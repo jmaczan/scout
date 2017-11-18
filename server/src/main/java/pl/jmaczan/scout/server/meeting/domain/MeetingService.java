@@ -41,4 +41,8 @@ class MeetingService {
     void removeMeeting(Long id) {
         meetingRepository.delete(id);
     }
+
+//    void removeMeeting(String description) {
+//        meetingRepository.findByDescription(description);
+//    }
 }

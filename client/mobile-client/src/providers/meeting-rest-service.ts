@@ -15,6 +15,7 @@ export class MeetingRestService {
   private meetingsServerURL: string  = "http://localhost:8080/meeting";
   private getAllMeetingsSuffix: string = "/";
   private addMeetingSuffix: string = "/add";
+  private removeMeetingSuffix: string = "/remove";
 
   constructor(public http: Http) {
     console.log('Hello MeetingRestServiceProvider Provider');
@@ -27,6 +28,11 @@ export class MeetingRestService {
 
   addMeeting(meeting: Meeting) {
     const url = this.meetingsServerURL + this.addMeetingSuffix;
+    return this.http.post(url, meeting);
+  }
+
+  removeMeeting(meeting: Meeting) {
+    const url = this.meetingsServerURL + this.removeMeetingSuffix;
     return this.http.post(url, meeting);
   }
 

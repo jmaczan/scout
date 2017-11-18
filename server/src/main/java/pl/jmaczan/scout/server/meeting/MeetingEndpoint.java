@@ -29,4 +29,10 @@ class MeetingEndpoint {
         meetingFacade.addMeeting(meetingDto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @PostMapping(value="/remove", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<?> removeMeeting(@RequestBody MeetingDto meetingDto) {
+        meetingFacade.removeMeeting(meetingDto);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

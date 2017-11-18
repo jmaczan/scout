@@ -23,6 +23,7 @@ class MeetingMapperDecorator implements MeetingMapper {
         meeting.getParticipationRatings().forEach(rating -> participationRatingDtos.add(participationRatingMapperDecorator.participationRatingToParticipationRatingDto(rating)));
 
         MeetingDto meetingDto = new MeetingDto();
+        meetingDto.setId(meeting.getId());
         meetingDto.setParticipationRatings(participationRatingDtos);
         meetingDto.setDescription(meeting.getDescription());
         meetingDto.setTeamsInvolved(meeting.getTeamsInvolved());
@@ -35,6 +36,7 @@ class MeetingMapperDecorator implements MeetingMapper {
         meetingDto.getParticipationRatings().forEach(ratingDto -> participationRatings.add(participationRatingMapperDecorator.participationRatingDtoToParticipationRating(ratingDto)));
 
         Meeting meeting = new Meeting();
+        meeting.setId(meetingDto.getId());
         meeting.setParticipationRatings(participationRatings);
         meeting.setTeamsInvolved(meetingDto.getTeamsInvolved());
         meeting.setDescription(meetingDto.getDescription());

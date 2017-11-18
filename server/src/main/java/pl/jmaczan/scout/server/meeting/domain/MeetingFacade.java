@@ -24,6 +24,11 @@ public class MeetingFacade {
         meetingService.addMeeting(meeting, meeting.getParticipationRatings());
     }
 
+    public void removeMeeting(MeetingDto meetingDto) {
+        Meeting meeting = meetingMapper.meetingDtoToMeeting(meetingDto);
+        meetingService.removeMeeting(meeting.getId());
+    }
+
     public List<MeetingDto> getAllMeetings() {
         List<MeetingDto> allMeetings = new ArrayList<>();
         meetingService.getAllMeetings().forEach(meeting -> allMeetings.add(meetingMapper.meetingToMeetingDto(meeting)));

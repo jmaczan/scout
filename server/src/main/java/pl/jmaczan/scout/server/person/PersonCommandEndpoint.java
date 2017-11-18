@@ -27,4 +27,10 @@ public class PersonCommandEndpoint {
         personFacade.modifyPerson(personDto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @PostMapping(value="/remove", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<?> removePerson(@RequestBody PersonDto personDto) {
+        personFacade.removePerson( personDto);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

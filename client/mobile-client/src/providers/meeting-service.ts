@@ -4,6 +4,7 @@ import 'rxjs/add/operator/map';
 import {Meeting} from "../models/meeting";
 import {Observable} from "rxjs/Observable";
 import {MeetingRestService} from "./meeting-rest-service";
+import {Subscription} from "rxjs/Subscription";
 
 /*
   Generated class for the MeetingServiceProvider provider.
@@ -43,6 +44,12 @@ export class MeetingService {
 
   addMeeting(meeting: Meeting) {
     return this.meetingRestService.addMeeting(meeting).subscribe();
+  }
+
+  removeMeetingSubscriptionFunctions(meeting: Meeting,
+                                     onNext: () => void,
+                                     onError: () => void) : Subscription {
+    return this.meetingRestService.removeMeeting(meeting).subscribe(next => { onNext() }, error => { onError() } );
   }
 
 }

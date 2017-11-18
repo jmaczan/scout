@@ -18,7 +18,7 @@
   </ion-refresher>
   <div *ngIf="meetingsLoaded; else meetingsLoadFailed">
     <ion-list>
-      <page-meeting *ngFor="let meeting of meetings" [meeting]="meeting" (click)="showMeetingDetails(meeting)"></page-meeting>
+      <page-meeting (press)="pressEvent(meeting)" *ngFor="let meeting of meetings" [meeting]="meeting" (click)="showMeetingDetails(meeting)"></page-meeting>
     </ion-list>
   </div>
   <ng-template #meetingsLoadFailed>
@@ -32,7 +32,7 @@
 </ion-content>
 <ion-footer *ngIf="meetingsLoaded">
   <ion-fab right bottom >
-    <button ion-fab (click)="nothing()"><ion-icon name=""><b>+</b></ion-icon></button>
+    <button ion-fab (click)="createMeeting()"><ion-icon name=""><b>+</b></ion-icon></button>
   </ion-fab>
 </ion-footer>
 

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {AlertController, App, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {Person} from "../../models/person";
 import {PersonService} from "../../providers/person-service";
+import {PersonAddPage} from "../person-add/person-add";
 
 /**
  * Generated class for the PersonListPage page.
@@ -21,12 +22,16 @@ export class PersonListPage {
   private personsLoaded: boolean = false;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private personService: PersonService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private appCtrl: App, private personService: PersonService, private alertCtrl: AlertController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PersonListPage');
     this.fetchPersons();
+  }
+
+  addPerson() {
+    this.appCtrl.getRootNav().push(PersonAddPage);
   }
 
   ionViewDidEnter() {
@@ -56,14 +61,33 @@ export class PersonListPage {
     })
   }
 
+  pressEvent(person: Person) {
+      let prompt = this.alertCtrl.create({
+        title: 'Remove person',
+        message: "Do you really want to remove this person?",
+        buttons: [
+          {
+            text: 'Cancel',
+            handler: data => {
+              console.log('Cancel clicked');
+            }
+          },
+          {
+            text: 'Yes',
+            handler: data => {
+              this.personService.removePersonSubscriptionFunctions(person, () => this.fetchPersons(), () => {});
+              console.log('Saved clicked');
+            }
+          }
+        ]
+      });
+      prompt.present();
+  }
+
   doRefresh(refresher) {
     console.log('TeamsListPage: teams list refresh requested', refresher);
     this.fetchPersons().then(
       refresher.complete());
   }
 
-
-  nothing() {
-
-  }
 }

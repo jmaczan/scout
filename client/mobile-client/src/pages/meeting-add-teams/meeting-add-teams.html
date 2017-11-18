@@ -23,7 +23,7 @@
         <ion-checkbox color="blue" [(ngModel)]="chosenTeam.checked"></ion-checkbox>
       </ion-item>
     </ion-list>
-    <button ion-button (click)="logEvent($event)">
+    <button *ngIf=" this.chosenTeamsFiltered().length>0 " ion-button (click)="logEvent($event)">
       Next
     </button>
   </div>

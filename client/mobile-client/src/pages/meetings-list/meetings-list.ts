@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import {App, NavController, NavParams} from 'ionic-angular';
+import {AlertController, App, NavController, NavParams} from 'ionic-angular';
 import {Meeting} from "../../models/meeting";
 import {MeetingService} from "../../providers/meeting-service";
 import {MeetingDetailsPage} from "../meeting-details/meeting-details";
+import {MeetingAddTeamsPage} from "../meeting-add-teams/meeting-add-teams";
 
 /**
  * Generated class for the MeetingsListPage page.
@@ -21,7 +22,7 @@ export class MeetingsListPage {
   private justStarted: boolean = true;
   private meetingsLoaded: boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private appCtrl: App, private meetingService: MeetingService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private appCtrl: App, private meetingService: MeetingService, private alertCtrl: AlertController) {
   }
 
   ionViewDidLoad() {
@@ -66,10 +67,37 @@ export class MeetingsListPage {
     })
   }
 
+  createMeeting() {
+    this.appCtrl.getRootNav().push(MeetingAddTeamsPage);
+  }
+
   showMeetingDetails(meeting) {
     this.appCtrl.getRootNav().push(MeetingDetailsPage, {
       meeting: meeting
     });
+  }
+
+  pressEvent(meeting: Meeting) {
+    let prompt = this.alertCtrl.create({
+      title: 'Remove meeting',
+      message: "Do you really want to remove this meeting?",
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Yes',
+          handler: data => {
+            this.meetingService.removeMeetingSubscriptionFunctions(meeting, () => this.fetchMeetingsList(), () => {});
+            console.log('Saved clicked');
+          }
+        }
+      ]
+    });
+    prompt.present();
   }
 
   doRefresh(refresher) {

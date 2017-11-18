@@ -17,7 +17,7 @@
         <ion-checkbox color="blue" [(ngModel)]="member.checked"></ion-checkbox>
       </ion-item>
     </ion-list>
-    <button ion-button (click)="logEvent($event)">
+    <button *ngIf="this.chosenMembersFiltered().length>0" ion-button (click)="logEvent($event)">
       Next
     </button>
   </div>
