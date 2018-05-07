@@ -24,7 +24,6 @@ class TeamMapperDecorator implements TeamMapper {
 
     @Override
     public TeamDto teamToTeamDto(Team team) {
-        //TeamDto teamDto = this.delegate.teamToTeamDto(team);
         TeamDto teamDto = new TeamDto();
         teamDto.setId(team.getId());
         teamDto.setName(team.getName().getValue());
@@ -41,11 +40,10 @@ class TeamMapperDecorator implements TeamMapper {
 
     @Override
     public Team teamDtoToTeam(TeamDto teamDto) {
-        //Team team = this.delegate.teamDtoToTeam(teamDto);
         Team team = new Team();
         team.setName(new TeamName(teamDto.getName()));
         Map<TeamMember, Function> members = new HashMap<>();
-        if(teamDto.getMembers() != null) {
+        if (teamDto.getMembers() != null) {
             teamDto.getMembers().forEach(member -> {
                 members.put(teamMemberDelegate.teamMemberDtoToTeamMember(member.getTeamMemberDto()),
                         functionDelegate.functionDtoToFunction(member.getFunctionDto()));

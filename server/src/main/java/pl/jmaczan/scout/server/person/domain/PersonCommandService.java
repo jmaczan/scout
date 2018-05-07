@@ -31,24 +31,24 @@ class PersonCommandService {
 
     private Person modifyPropertiesIfChanged(Person original, Person modified) {
         Person resultPerson = original;
-        if(original.getId() != modified.getId()) {
+        if (original.getId() != modified.getId()) {
             throw new DataValidationException("You can't modify person's id");
         }
 
         resultPerson.setId(original.getId());
-        if(modified.getForename() != null && modified.getForename().getValue().length() != 0 && !(original.getForename().equals(modified.getForename()))) {
+        if (modified.getForename() != null && modified.getForename().getValue().length() != 0 && !(original.getForename().equals(modified.getForename()))) {
             resultPerson.setForename(modified.getForename());
         } else {
             resultPerson.setForename(original.getForename());
         }
 
-        if(modified.getSurname() != null && modified.getSurname().getValue().length() != 0 && !(original.getSurname().equals(modified.getSurname()))) {
+        if (modified.getSurname() != null && modified.getSurname().getValue().length() != 0 && !(original.getSurname().equals(modified.getSurname()))) {
             resultPerson.setSurname(modified.getSurname());
         } else {
             resultPerson.setSurname(original.getSurname());
         }
 
-        if(modified.getDescription() != null && modified.getDescription().length() != 0 && !(original.getDescription().equals(modified.getDescription()))) {
+        if (modified.getDescription() != null && modified.getDescription().length() != 0 && !(original.getDescription().equals(modified.getDescription()))) {
             resultPerson.setDescription(modified.getDescription());
         } else {
             resultPerson.setDescription(original.getDescription());
@@ -59,7 +59,7 @@ class PersonCommandService {
 
     private void validatePersonId(Person person) {
         Person personFound = personRepository.findOne(person.getId());
-        if(personFound == null) {
+        if (personFound == null) {
             throw new DataValidationException("Invalid person id. Doesn't exist in database");
         }
     }

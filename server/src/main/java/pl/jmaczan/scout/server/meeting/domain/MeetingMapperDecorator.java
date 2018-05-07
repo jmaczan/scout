@@ -40,7 +40,7 @@ class MeetingMapperDecorator implements MeetingMapper {
         meeting.setParticipationRatings(participationRatings);
         meeting.setTeamsInvolved(meetingDto.getTeamsInvolved());
         meeting.setDescription(meetingDto.getDescription());
-        if(meetingDto.getId() != null) {
+        if (meetingDto.getId() != null) {
             meeting.setId(meetingDto.getId());
         }
         return meeting;

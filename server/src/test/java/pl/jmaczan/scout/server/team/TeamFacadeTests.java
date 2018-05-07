@@ -64,11 +64,11 @@ public class TeamFacadeTests {
 
         List<TeamMemberDto> teamMembersUpdated = teamFacade.getAllMembers();
 
-        for(TeamMemberWithFunctionDto tmo : teamsUpdated.get(0).getMembers()) {
+        for (TeamMemberWithFunctionDto tmo : teamsUpdated.get(0).getMembers()) {
             System.out.println(tmo.getTeamMemberDto().toString() + " | " + tmo.getFunctionDto().toString());
         }
 
-        for(TeamMemberDto teamMemberDto1 : teamMembersUpdated) {
+        for (TeamMemberDto teamMemberDto1 : teamMembersUpdated) {
             System.out.println(teamMemberDto1);
         }
 
@@ -101,7 +101,7 @@ public class TeamFacadeTests {
         teamMemberDto.setPersonId(1L);
         teamMemberDto.setHasAnchorOnScarf(false);
 
-        AddTeamMemberWithFunctionDto dto = new AddTeamMemberWithFunctionDto(teamMemberDto, functionDto, teamDtoId+999L);
+        AddTeamMemberWithFunctionDto dto = new AddTeamMemberWithFunctionDto(teamMemberDto, functionDto, teamDtoId + 999L);
 
         //WHEN
         teamFacade.addMember(dto);

@@ -10,7 +10,6 @@ import pl.jmaczan.scout.server.team.domain.dto.AddTeamMemberDto;
 import pl.jmaczan.scout.server.team.domain.dto.TeamDto;
 import pl.jmaczan.scout.server.team.domain.dto.TeamWithMembersDto;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -38,13 +37,13 @@ class TeamEndpoint {
         return new ResponseEntity<>(teamFacade.getTeamMemberDetails(teamId, memberId), HttpStatus.OK);
     }
 
-    @PostMapping(value="/add", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/add", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<?> addTeam(@RequestBody TeamDto teamDto) {
         teamFacade.addTeam(teamDto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PostMapping(value="/add/member", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/add/member", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<?> addTeamMember(@RequestBody AddTeamMemberDto addTeamMemberDto) {
         teamFacade.addMember(addTeamMemberDto);
         return new ResponseEntity<>(HttpStatus.OK);

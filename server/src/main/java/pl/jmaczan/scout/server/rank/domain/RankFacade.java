@@ -18,7 +18,7 @@ public class RankFacade {
     }
 
     public void removeRank(RankDto rankDto) {
-        if(rankDto.getId() !=  null || this.rankService.getRank(rankDto.getId()) != null) {
+        if (rankDto.getId() != null || this.rankService.getRank(rankDto.getId()) != null) {
             this.rankService.removeRank(rankDto.getId());
         } else {
             throw new RankValueException("Wrong rank id");

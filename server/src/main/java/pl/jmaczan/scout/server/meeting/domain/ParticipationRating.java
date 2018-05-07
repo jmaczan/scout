@@ -10,7 +10,6 @@ class ParticipationRating {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    //@Column(name = "RATING_ID")
     private Long id;
 
     @Column(name = "MEMBER_ID")

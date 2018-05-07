@@ -8,7 +8,6 @@ import pl.jmaczan.scout.server.team.domain.dto.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class TeamFacade {
@@ -89,14 +88,10 @@ public class TeamFacade {
 
     public MemberDto getTeamMemberDetails(Long teamId, Long memberId) {
         MemberDto memberDto = new MemberDto();
-        //todo dodać ifnotpresent na optionalu!!
-        //Optional<TeamMember> member = teamQueryService.get(teamId).getMembers().keySet().stream().filter(memberToFilter -> memberToFilter.getId().equals(memberId)).findFirst();
-        //if(member.isPresent()) {
         TeamMember member = teamMemberService.getMember(memberId);
-        if(member != null) {
-            //Long personId = member.get().getPersonId();
+        if (member != null) {
             Long personId = member.getPersonId();
-            PersonDto personDto = personFacade.getPerson(personId); //TODO rewrite it to mapper
+            PersonDto personDto = personFacade.getPerson(personId);
             memberDto.setPersonId(personDto.getId());
             memberDto.setForename(personDto.getForename());
             memberDto.setSurname(personDto.getSurname());
@@ -104,14 +99,9 @@ public class TeamFacade {
             memberDto.setHasAnchorOnScarf(member.isHasAnchorOnScarf());
             memberDto.setHasCross(member.isHasCross());
             memberDto.setHasScarf(member.isHasScarf());
-//            memberDto.setFunction();
-//            memberDto.setCordId(member.get().getCordId());
-//            memberDto.setRankId(member.get().getRankId());
-//            memberDto.setMemberId(member.get().getId());
             memberDto.setCordId(member.getCordId());
             memberDto.setRankId(member.getRankId());
             memberDto.setMemberId(member.getId());
-            // TODO - look at Patrol class for Function
         }
         return memberDto;
     }

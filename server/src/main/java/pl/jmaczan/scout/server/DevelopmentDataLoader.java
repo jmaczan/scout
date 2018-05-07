@@ -10,7 +10,10 @@ import pl.jmaczan.scout.server.meeting.domain.dto.ParticipationRatingDto;
 import pl.jmaczan.scout.server.person.domain.PersonFacade;
 import pl.jmaczan.scout.server.person.domain.dto.PersonDto;
 import pl.jmaczan.scout.server.team.domain.TeamFacade;
-import pl.jmaczan.scout.server.team.domain.dto.*;
+import pl.jmaczan.scout.server.team.domain.dto.AddTeamMemberWithFunctionDto;
+import pl.jmaczan.scout.server.team.domain.dto.FunctionDto;
+import pl.jmaczan.scout.server.team.domain.dto.TeamDto;
+import pl.jmaczan.scout.server.team.domain.dto.TeamMemberDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +41,7 @@ class DevelopmentDataLoader implements ApplicationRunner {
 
         Long personId = null;
 
-        for(PersonDto dto : personFacade.getAllPersons()) {
+        for (PersonDto dto : personFacade.getAllPersons()) {
             personId = dto.getId();
         }
 
@@ -52,9 +55,9 @@ class DevelopmentDataLoader implements ApplicationRunner {
 
         Long teamId = null;
 
-        List<TeamDto> allTeams =  teamFacade.getAllTeams();
+        List<TeamDto> allTeams = teamFacade.getAllTeams();
 
-        for(TeamDto dto : allTeams) {
+        for (TeamDto dto : allTeams) {
             teamId = dto.getId();
         }
 

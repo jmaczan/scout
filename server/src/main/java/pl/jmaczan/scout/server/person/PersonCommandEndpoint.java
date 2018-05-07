@@ -16,21 +16,21 @@ public class PersonCommandEndpoint {
     @Autowired
     private PersonFacade personFacade;
 
-    @PostMapping(value="/add", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/add", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<?> addPerson(@RequestBody PersonDto personDto) {
         personFacade.addPerson(personDto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PostMapping(value="/modify", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/modify", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<?> modifyPerson(@RequestBody PersonDto personDto) {
         personFacade.modifyPerson(personDto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PostMapping(value="/remove", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/remove", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<?> removePerson(@RequestBody PersonDto personDto) {
-        personFacade.removePerson( personDto);
+        personFacade.removePerson(personDto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

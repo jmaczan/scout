@@ -26,7 +26,7 @@ class MeetingService {
         List<ParticipationRating> participationRatingsAdded = new ArrayList<>();
 
         participationRatingList.forEach(rating ->
-            participationRatingsAdded.add(participationRatingService.addParticipationRating(rating))
+                participationRatingsAdded.add(participationRatingService.addParticipationRating(rating))
         );
 
         meeting.setParticipationRatings(participationRatingsAdded);
@@ -42,7 +42,4 @@ class MeetingService {
         meetingRepository.delete(id);
     }
 
-//    void removeMeeting(String description) {
-//        meetingRepository.findByDescription(description);
-//    }
 }

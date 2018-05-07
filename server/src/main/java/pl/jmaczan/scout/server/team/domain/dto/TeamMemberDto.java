@@ -1,7 +1,5 @@
 package pl.jmaczan.scout.server.team.domain.dto;
 
-import java.util.Date;
-
 public class TeamMemberDto {
 
     private Long id;

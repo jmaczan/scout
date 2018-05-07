@@ -5,8 +5,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.jmaczan.scout.server.commons.exception.DataValidationException;
 
-import java.util.List;
-
 @Service
 @Transactional
 class TeamCommandService {
@@ -26,37 +24,25 @@ class TeamCommandService {
 
     void addTeamMemberWithFunction(Long teamId, TeamMember teamMember) {
         Team team = teamRepository.findOne(teamId);
-        if(team == null) {
+        if (team == null) {
             throw new DataValidationException("There's no such team in database");
         }
         TeamMember savedTeamMember = teamMemberService.addTeamMember(teamMember);
-        team.addMember(savedTeamMember, null); // TODO - Function instead of null
+        team.addMember(savedTeamMember, null);
         teamRepository.save(team);
         teamRepository.flush();
-        /*
-        co trzeba zrobic:
-        sprawdzenie czy team istnieje
-        napisanie mapera dla team member i function
-        zapisanie do bazy team member i function
-         */
     }
 
 
     void addTeamMemberWithFunction(Long teamId, TeamMember teamMember, Function function) {
         Team team = teamRepository.findOne(teamId);
-        if(team == null) {
+        if (team == null) {
             throw new DataValidationException("There's no such team in database");
         }
         TeamMember savedTeamMember = teamMemberService.addTeamMember(teamMember);
         Function savedFunction = functionService.addFunction(function);
         team.addMember(savedTeamMember, savedFunction);
         teamRepository.save(team);
-        /*
-        co trzeba zrobic:
-        sprawdzenie czy team istnieje
-        napisanie mapera dla team member i function
-        zapisanie do bazy team member i function
-         */
     }
 
     void removeTeam(Long id) {

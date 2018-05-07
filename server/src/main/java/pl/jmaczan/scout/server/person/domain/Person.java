@@ -28,6 +28,7 @@ class Person {
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -35,6 +36,7 @@ class Person {
     Forename getForename() {
         return forename;
     }
+
     void setForename(Forename forename) {
         this.forename = forename;
     }
@@ -42,6 +44,7 @@ class Person {
     Surname getSurname() {
         return surname;
     }
+
     void setSurname(Surname surname) {
         this.surname = surname;
     }
@@ -49,6 +52,7 @@ class Person {
     public String getDescription() {
         return description;
     }
+
     public void setDescription(String description) {
         this.description = description;
     }

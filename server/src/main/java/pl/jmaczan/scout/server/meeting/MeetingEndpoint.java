@@ -24,13 +24,13 @@ class MeetingEndpoint {
         return new ResponseEntity<>(meetingDtoList, HttpStatus.OK);
     }
 
-    @PostMapping(value="/add", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/add", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<?> addMeeting(@RequestBody MeetingDto meetingDto) {
         meetingFacade.addMeeting(meetingDto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PostMapping(value="/remove", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/remove", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<?> removeMeeting(@RequestBody MeetingDto meetingDto) {
         meetingFacade.removeMeeting(meetingDto);
         return new ResponseEntity<>(HttpStatus.OK);

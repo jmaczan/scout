@@ -19,7 +19,7 @@ class PatrolName {
     }
 
     private void validate(String forename) {
-        if(forename == null || forename.length() == 0) {
+        if (forename == null || forename.length() == 0) {
             throw new DataValidationException("Invalid patrol name");
         }
     }

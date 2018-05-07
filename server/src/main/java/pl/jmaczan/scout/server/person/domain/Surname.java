@@ -20,7 +20,7 @@ class Surname {
     }
 
     private void validate(String surname) {
-        if(surname == null || surname.length() == 0) {
+        if (surname == null || surname.length() == 0) {
             throw new DataValidationException("Invalid surname");
         }
     }
