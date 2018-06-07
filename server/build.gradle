@@ -39,6 +39,20 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     runtime('com.h2database:h2')
     testCompile('org.springframework.boot:spring-boot-starter-test')
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.0.2.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.0.2.RELEASE'
+
+    // https://mvnrepository.com/artifact/org.projectlombok/lombok
+    compile group: 'org.projectlombok', name: 'lombok', version: '1.18.0'
+
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.7'
+    compile(group: 'com.google.guava', name: 'guava', version: '18.0')
+    compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.0'
+    compile "joda-time:joda-time"
+    testCompile "junit:junit"
+    testCompile "org.mockito:mockito-core"
+    testCompile group: 'com.google.guava', name: 'guava-testlib', version: '25.1-jre'
     //compile 'org.mapstruct:mapstruct:1.1.0.Final'
 
 }

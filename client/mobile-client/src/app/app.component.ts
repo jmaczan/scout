@@ -17,8 +17,8 @@ import { TranslateService } from '@ngx-translate/core'
   templateUrl: 'app.component.html'
 })
 export class MyApp {
-  private appLoaded = false;
-  private rootPage = MainMenuPage; //TODO
+  public appLoaded = false;
+  public rootPage = MainMenuPage; //TODO
 
   @ViewChild(Nav) nav: Nav;
 
