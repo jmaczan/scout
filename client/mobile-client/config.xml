@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="pl.jmaczan.scout.frontend" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="pl.jmaczan.scout" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Scout</name>
     <description>Cross-platform application for scouting team management support.</description>
     <author email="jedrzejmaczan@gmail.com" href="https://github.com/jmaczan">Jedrzej Maczan</author>

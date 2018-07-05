@@ -28,11 +28,11 @@ export class MyApp {
   ]
 
   constructor(private translate: TranslateService,
-              private platform: Platform,
-              private settings: Settings,
-              private config: Config,
-              private statusBar: StatusBar,
-              private splashScreen: SplashScreen) {
+    private platform: Platform,
+    private settings: Settings,
+    private config: Config,
+    private statusBar: StatusBar,
+    private splashScreen: SplashScreen) {
 
     this.initTranslate();
     this.splashScreen.show();

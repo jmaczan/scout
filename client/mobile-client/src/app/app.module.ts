@@ -12,10 +12,8 @@ import { TeamPage } from '../pages/team/team';
 import { TeamsListPage } from '../pages/teams-list/teams-list';
 
 import { Api } from '../providers/api';
-import { Items } from '../mocks/providers/items';
 import { Settings } from '../providers/settings';
 
-import { Camera } from '@ionic-native/camera';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -26,32 +24,32 @@ import { TeamService } from '../providers/team-service';
 import { TeamRestService } from '../providers/team-rest-service';
 import { MemberRestService } from '../providers/member-rest-service';
 import { MemberService } from '../providers/member-service';
-import {MemberDetailsPage} from "../pages/member-details/member-details";
-import {ModifyMemberDetailsPage} from "../pages/modify-member-details/modify-member-details";
-import {TeamManagementPage} from "../pages/team-management/team-management";
-import {PersonService } from '../providers/person-service';
-import {PersonPage} from "../pages/person/person";
-import {PersonListPage} from "../pages/person-list/person-list";
-import {PersonDetailsPage} from "../pages/person-details/person-details";
-import {PersonManagementPage} from "../pages/person-management/person-management";
-import {PersonRestService } from '../providers/person-rest-service';
-import {PersonAddPage} from "../pages/person-add/person-add";
-import {TeamAddPage} from "../pages/team-add/team-add";
-import {TeamMemberAddPage} from "../pages/team-member-add/team-member-add";
+import { MemberDetailsPage } from "../pages/member-details/member-details";
+import { ModifyMemberDetailsPage } from "../pages/modify-member-details/modify-member-details";
+import { TeamManagementPage } from "../pages/team-management/team-management";
+import { PersonService } from '../providers/person-service';
+import { PersonPage } from "../pages/person/person";
+import { PersonListPage } from "../pages/person-list/person-list";
+import { PersonDetailsPage } from "../pages/person-details/person-details";
+import { PersonManagementPage } from "../pages/person-management/person-management";
+import { PersonRestService } from '../providers/person-rest-service';
+import { PersonAddPage } from "../pages/person-add/person-add";
+import { TeamAddPage } from "../pages/team-add/team-add";
+import { TeamMemberAddPage } from "../pages/team-member-add/team-member-add";
 import { MeetingService } from '../providers/meeting-service';
 import { MeetingRestService } from '../providers/meeting-rest-service';
-import {MeetingManagementPage} from "../pages/meeting-management/meeting-management";
-import {MeetingsListPage} from "../pages/meetings-list/meetings-list";
-import {MeetingPage} from "../pages/meeting/meeting";
-import {MeetingAddTeamsPage} from "../pages/meeting-add-teams/meeting-add-teams";
-import {MeetingAddParticipantsPage} from "../pages/meeting-add-participants/meeting-add-participants";
-import {MeetingRateActivityPage} from "../pages/meeting-rate-activity/meeting-rate-activity";
-import {MeetingRateBehaviorPage} from "../pages/meeting-rate-behavior/meeting-rate-behavior";
-import {MeetingRatePresencePage} from "../pages/meeting-rate-presence/meeting-rate-presence";
-import {MeetingRatePunctualityPage} from "../pages/meeting-rate-punctuality/meeting-rate-punctuality";
-import {MeetingRateUniformPage} from "../pages/meeting-rate-uniform/meeting-rate-uniform";
-import {MeetingDetailsPage} from "../pages/meeting-details/meeting-details";
-import {MeetingAddDescriptionPage} from "../pages/meeting-add-description/meeting-add-description";
+import { MeetingManagementPage } from "../pages/meeting-management/meeting-management";
+import { MeetingsListPage } from "../pages/meetings-list/meetings-list";
+import { MeetingPage } from "../pages/meeting/meeting";
+import { MeetingAddTeamsPage } from "../pages/meeting-add-teams/meeting-add-teams";
+import { MeetingAddParticipantsPage } from "../pages/meeting-add-participants/meeting-add-participants";
+import { MeetingRateActivityPage } from "../pages/meeting-rate-activity/meeting-rate-activity";
+import { MeetingRateBehaviorPage } from "../pages/meeting-rate-behavior/meeting-rate-behavior";
+import { MeetingRatePresencePage } from "../pages/meeting-rate-presence/meeting-rate-presence";
+import { MeetingRatePunctualityPage } from "../pages/meeting-rate-punctuality/meeting-rate-punctuality";
+import { MeetingRateUniformPage } from "../pages/meeting-rate-uniform/meeting-rate-uniform";
+import { MeetingDetailsPage } from "../pages/meeting-details/meeting-details";
+import { MeetingAddDescriptionPage } from "../pages/meeting-add-description/meeting-add-description";
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -104,7 +102,6 @@ export function provideSettings(storage: Storage) {
     PersonListPage,
     PersonDetailsPage,
     PersonManagementPage
-    //TODO: pages here
   ],
   imports: [
     BrowserModule,
@@ -149,17 +146,13 @@ export function provideSettings(storage: Storage) {
     PersonListPage,
     PersonDetailsPage,
     PersonManagementPage
-    //TODO: pages here
   ],
   providers: [
     Api,
-    Items,
-    Camera,
     GoogleMaps,
     SplashScreen,
     StatusBar,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
-    // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     TeamService,
     TeamRestService,
