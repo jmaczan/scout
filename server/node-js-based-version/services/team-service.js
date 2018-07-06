@@ -1,19 +1,21 @@
 'use strict';
-
-var teams = [];
+const teamRepository = require('../repositories/team-repository');
 const Team = require('./Team');
+var teams = [];
 
-exports.update = exports.create = function(id, name, members) {
-  return new Promise((resolve, reject) => {
-    // mongo db request
-    teams[id] = new Team(id, name, members);
-    resolve(teams[id]);
-  });
+
+exports.create = async function (name) {
+  const createTeam = await teamRepository.create({name: name});
 };
+
+// exports.update = async function (id, name, members) {
+//   const update = await teamRepository.update({name: name})
+// };
+
 
 exports.read = function (id) {
   return new Promise((resolve, reject) => {
-    if (teams[id]) { 
+    if (teams[id]) {
       resolve(teams[id]);
     } else {
       reject(`Team ${id} doesn't exist`);
@@ -32,7 +34,7 @@ exports.destroy = function (id) {
   });
 };
 
-exports.idlist = function() {
+exports.idlist = function () {
   return new Promise((resolve, reject) => {
     resolve(Object.ids(teams));
   });
