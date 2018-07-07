@@ -1,11 +1,33 @@
 var express = require('express');
 const teamService = require('../services/team-service');
-var router = express.Router();
+var teamsApp = express();
 
-/* GET teams listing. */
-router.get('/', function(req, res, next) {
-  const teams = teamService.read()
-  res.send('respond with a resource');
+teamsApp.get('/', function(req, res, next) {
+  teamService.readAll().then(response => {
+    res.send(response);
+  }).catch(err => {
+    console.log('all error', err)
+    next(err);
+  })
 });
 
-module.exports = router;
+teamsApp.get('/:name', function(req, res, next) {
+  teamService.readByName(req.params.name).then(response => {
+    res.send(response);
+  }).catch(err => {
+    console.log('name error', err)
+    next(err);
+  })
+});
+
+teamsApp.post('/create', function(req, res, next) {
+  teamService.create(req.body.name).then(response => {
+    return response.json();
+  }).then(response => {
+    res.send(response);
+  }).catch(err => {
+    next(err);
+  })
+});
+
+module.exports = teamsApp;

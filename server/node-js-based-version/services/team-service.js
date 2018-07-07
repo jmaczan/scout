@@ -1,47 +1,32 @@
 'use strict';
 const teamRepository = require('../repositories/team-repository');
-const Team = require('./Team');
-var teams = [];
-
 
 exports.create = async function (name) {
-  const createTeam = await teamRepository.create({name: name});
+  const createTeam = await teamRepository.create(name);
+  return createTeam;
 };
 
-// exports.update = async function (id, name, members) {
-//   const update = await teamRepository.update({name: name})
-// };
-
-
-exports.read = function (id) {
-  return new Promise((resolve, reject) => {
-    if (teams[id]) {
-      resolve(teams[id]);
-    } else {
-      reject(`Team ${id} doesn't exist`);
-    }
-  });
+exports.read = async function (id) {
+  const getTeam = await teamRepository.read(id);
+  return getTeam;
 };
 
-exports.destroy = function (id) {
-  return new Promise((resolve, reject) => {
-    if (teams[id]) {
-      delete teams[id];
-      resolve();
-    } else {
-      reject(`Team ${id} doesn't exist`);
-    }
-  });
+exports.readAll = async function () {
+  const getAllTeams = await teamRepository.readAll();
+  return getAllTeams;
 };
 
-exports.idlist = function () {
-  return new Promise((resolve, reject) => {
-    resolve(Object.ids(teams));
-  });
+exports.readByName = async function (name) {
+  const getTeams = await teamRepository.readByName(name);
+  return getTeams;
 };
 
-exports.count = function () {
-  return new Promise((resolve, reject) => {
-    resolve(teams.length);
-  })
-}
+exports.destroy = async function (id) {
+  const removedTeam = await teamRepository.destroy(name);
+  return removedTeam;
+};
+
+exports.destroyByName = async function (name) {
+  const removedTeam = await teamRepository.destroyByName(name);
+  return removedTeam;
+};
